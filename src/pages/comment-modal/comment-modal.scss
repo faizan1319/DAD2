@@ -1,0 +1,25 @@
+page-comment-modal {
+
+.comments-section{
+    height: calc(100% - 51px);
+}
+.comments-section ion-label {
+    white-space: normal;
+}
+
+.comment{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    border-top: solid 1px #dedede;
+}
+
+.comment .item-md {
+    padding-left: 2px;
+}
+
+ion-icon{
+    z-index: 1;
+}
+}

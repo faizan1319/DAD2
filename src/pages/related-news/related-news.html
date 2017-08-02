@@ -1,0 +1,56 @@
+<!--
+  Generated template for the RelatedNews page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>relatedNews</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="side fixed-content">
+    <div class="side-bar-row">
+      <ion-icon name="search"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon name="notifications" (tap)="openNotifications()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon name="camera" (tap)="openCamera()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon name="settings" (tap)="moveToRelatedNews()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon ios="md-globe" md="md-globe" (tap)="moveToMaps()"></ion-icon>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="slide-title">
+      <ion-title>{{slideTitle}}</ion-title>
+    </div>
+
+    <div class="feeds scroll-content">
+      <ion-slides>
+        <ion-slide>
+          <div class="">
+            
+          </div>
+        </ion-slide>
+
+      </ion-slides>
+    </div>
+  </div>
+
+
+
+      
+</ion-content>

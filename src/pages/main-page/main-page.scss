@@ -1,0 +1,43 @@
+page-main-page {
+
+.side{
+    width : 11%;
+    height: 100%; 
+    background: blanchedalmond;
+    text-align: center;
+}
+
+.side-bar-row{
+
+    height:20%;
+    padding-top: 50%;
+    padding-left: 5%;
+    font-size: 25px;
+    
+}
+
+.main-content{
+    margin-left: 10%;
+}
+.feeds{
+    margin-left: 10%;
+    margin-top: 8%;
+}
+
+.slide-title{
+    position: fixed;
+    width: 100%;
+    padding-top: 2%;
+    text-align: center;
+}
+
+.swiper-slide {
+    overflow-y: scroll;
+    display: block;
+}
+
+.separator{
+    border-top: solid 1px;
+}
+
+}

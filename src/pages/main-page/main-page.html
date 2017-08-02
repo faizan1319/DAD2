@@ -1,0 +1,320 @@
+<!--
+  Generated template for the MainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="header">
+
+  <ion-navbar>
+    <ion-title>MainPage</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="side fixed-content">
+
+    <div class="side-bar-row">
+      <ion-icon name="search"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon name="notifications" (tap)="openNotifications()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon name="camera" (tap)="openCamera()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon name="settings" (tap)="moveToRelatedNews()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
+      <ion-icon ios="md-globe" md="md-globe" (tap)="moveToMaps()"></ion-icon>
+    </div>
+
+  </div>
+
+  <div class = "main-content">
+    <div class ="slide-title">
+      <ion-title>{{slideTitle}}</ion-title>
+    </div>
+
+    <div class="feeds scroll-content">
+
+      <ion-slides (ionSlideDidChange)="changeTitle()" pager>
+        <ion-slide class="scroll-content">  
+          
+          <ion-row>
+            <ion-card *ngFor="let post of posts">
+              <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal(post.post_lat, post.post_lng, post.post_title)"></ion-icon>
+                <ion-avatar item-left>
+                  <img src= {{post.dp_url}}>
+                </ion-avatar>
+                <h2>{{post.username}}</h2>
+                <p>May 12, 1984</p>
+              </ion-item>
+              <img src="assets/img/image2.jpg">
+              <ion-card-content>
+                <p><strong>Title: </strong>{{post.post_title}}</p>
+                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal(post.post_id, post.post_desc, post.username, post.dp_url)">{{post.post_desc}}</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    {{post.post_likes}}
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal(post.post_id, post.post_desc, post.username, post.dp_url)">
+                      <ion-icon name='text'></ion-icon>
+                      {{post.post_comment_count}}
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    {{post.post_dislikes}}
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-row>
+          
+        </ion-slide>
+
+        <ion-slide class="scroll-content">  
+          
+          <ion-row>
+            <ion-card>
+              <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
+                <ion-avatar item-left>
+                  <img src="assets/img/daniyal.jpg">
+                </ion-avatar>
+                <h2>Sarah Connor</h2>
+                <p>May 12, 1984</p>
+              </ion-item>
+              <img src="assets/img/image2.jpg">
+              <ion-card-content>
+                <p><strong>Title: </strong>Lag Gaey Lasan</p>
+                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
+                      <ion-icon name='text'></ion-icon>
+                      64
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-row>
+
+          <ion-row>
+            <ion-card>
+              <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
+                <ion-avatar item-left>
+                  <img src="assets/img/daniyal.jpg">
+                </ion-avatar>
+                <h2>Sarah Connor</h2>
+                <p>May 12, 1984</p>
+              </ion-item>
+              <img src="assets/img/image2.jpg">
+              <ion-card-content>
+                <p><strong>Title: </strong>Lag Gaey Lasan</p>
+                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
+                      <ion-icon name='text'></ion-icon>
+                      64
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-row>
+
+          <ion-row>
+            <ion-card>
+              <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
+                <ion-avatar item-left>
+                  <img src="assets/img/daniyal.jpg">
+                </ion-avatar>
+                <h2>Sarah Connor</h2>
+                <p>May 12, 1984</p>
+              </ion-item>
+              <img src="assets/img/image2.jpg">
+              <ion-card-content>
+                <p><strong>Title: </strong>Lag Gaey Lasan</p>
+                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
+                      <ion-icon name='text'></ion-icon>
+                      64
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-row>
+          
+        </ion-slide>
+
+        <ion-slide class="scroll-content">  
+
+          <ion-row>
+            <ion-card>
+              <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
+                <ion-avatar item-left>
+                  <img src="assets/img/daniyal.jpg">
+                </ion-avatar>
+                <h2>Sarah Connor</h2>
+                <p>May 12, 1984</p>
+              </ion-item>
+              <img src="assets/img/image2.jpg">
+              <ion-card-content>
+                <p><strong>Title: </strong>Lag Gaey Lasan</p>
+                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
+                      <ion-icon name='text'></ion-icon>
+                      64
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-row>
+
+          <ion-row>
+            <ion-card>
+              <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
+                <ion-avatar item-left>
+                  <img src="assets/img/daniyal.jpg">
+                </ion-avatar>
+                <h2>Sarah Connor</h2>
+                <p>May 12, 1984</p>
+              </ion-item>
+              <img src="assets/img/image2.jpg">
+              <ion-card-content>
+                <p><strong>Title: </strong>Lag Gaey Lasan</p>
+                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
+                      <ion-icon name='text'></ion-icon>
+                      64
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    30
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-row>
+
+        </ion-slide>
+      </ion-slides>
+
+    </div>
+  </div>
+
+</ion-content>

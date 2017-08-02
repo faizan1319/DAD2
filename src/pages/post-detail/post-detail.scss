@@ -1,0 +1,30 @@
+page-post-detail {
+
+.media{
+    width: 100%;
+}
+
+.media img{
+    display: block;
+}
+
+#map{
+    width: 100%;
+    height: 20%;
+    margin-top: auto;
+}
+
+.comments-section{
+    width: 100%;
+    margin-top: auto;
+}
+
+.comments-section ion-label {
+    white-space: normal;
+}
+
+.comments-section .item-ios.item-block .item-inner{
+    border-bottom: none;
+}
+
+}
