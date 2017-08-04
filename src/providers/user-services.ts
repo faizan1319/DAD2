@@ -25,4 +25,34 @@ export class UserServices {
      .map((res: Response) => res.json())
   }
 
+  newUser(body: any) {
+    let localUrl: string = this.mainUrl+'signup';
+    
+    console.log(localUrl);
+    console.log(body);
+    
+    return this.http.post(localUrl, body)
+    .map((res: Response) => res.json())
+  }
+
+  checkForduplicateUsername(username: string) {
+    let localUrl: string = this.mainUrl+'checkDuplicateUsername/'+username;
+
+    return this.http.get(localUrl)
+    .map((res: Response) => res.json)
+    .subscribe((data) => {
+      console.log(data);
+    })
+  }
+
+  checkForEmailAlreadyExist(email: string) {
+    let localUrl: string = this.mainUrl+'checkForEmailAlreadyExist/'+email;
+
+    return this.http.get(localUrl)
+    .map((res: Response) => res.json)
+    .subscribe((data) => {
+      console.log(data);
+    })
+  }
+
 }
