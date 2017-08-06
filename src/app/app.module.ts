@@ -14,6 +14,7 @@ import { MyApp } from './app.component';
 import { UserServices } from "../providers/user-services";
 import { PostServices } from "../providers/post-services";
 import { CommentServices } from "../providers/comment-services";
+// import { SignupValidators } from "../validators/signupValidations";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CommentServices } from "../providers/comment-services";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServices,
     PostServices,
-    CommentServices
+    CommentServices,
+    // SignupValidators
   ]
 })
 export class AppModule {}

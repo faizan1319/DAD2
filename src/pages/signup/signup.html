@@ -15,18 +15,18 @@
 
 <ion-content padding>
 
-  <div class='input-section'>
+  <form [formGroup]="inputSection" (ngSubmit)="enrollNewUser()">
     <ion-grid>
       <ion-row>
         <ion-col col-6>    
           <ion-item>
-            <ion-input type="text" placeholder="Firstname" [(ngModel)]="firstname"></ion-input>
+            <ion-input type="text" placeholder="Firstname" formControlName="firstname" [class.invalid]="!inputSection.controls.firstname.valid && inputSection.controls.firstname.dirty"></ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col col-6>
           <ion-item>
-            <ion-input type="text" placeholder="Lastname" [(ngModel)]="lastname"></ion-input>
+            <ion-input type="text" placeholder="Lastname" formControlName="lastname"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -34,15 +34,27 @@
       <ion-row>
         <ion-col>
           <ion-item>          
-            <ion-input type="text" placeholder="Username" [(ngModel)]="username"></ion-input>
+            <ion-input type="number" placeholder="Phone Number (03XXXXXXXXX)" formControlName="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row> 
+
+      <ion-row>
+        <ion-col>
+          <ion-item>          
+            <ion-input type="text" placeholder="Username" formControlName="username" [class.meri]="!inputSection.controls.username.valid && inputSection.controls.username.touched"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       
+      <ion-item *ngIf="!inputSection.controls.username.valid  && (inputSection.controls.username.dirty)">
+                <p>Please enter a valid name.</p>
+      </ion-item>
+
       <ion-row>
         <ion-col>
           <ion-item>          
-            <ion-input type="text" placeholder="Email" [(ngModel)]="email"></ion-input>
+            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -50,24 +62,16 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row> 
-
-      <ion-row>
-        <ion-col>
-          <ion-item>          
-            <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword"></ion-input>
+            <ion-input type="password" placeholder="Password" formControlName="password" [(ngModel)]='pass'></ion-input>
           </ion-item>
         </ion-col>
       </ion-row> 
 
     </ion-grid>
-  </div>
+  </form>
 
   <div class="signup-button">
-    <button ion-button block (tap)='enrollNewUser()'>Sign Up</button>
+    <button ion-button block (tap)="enrollNewUser()" [disabled]='!inputSection.valid'>Sign Up</button>
   </div>
 
 </ion-content>

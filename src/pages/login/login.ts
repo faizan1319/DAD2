@@ -19,6 +19,7 @@ export class Login {
     localPassword: string;
     realPassword: string;
 
+
   constructor (
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,6 +30,7 @@ export class Login {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
   }
+
 
   userLogin() {
     this.service.loginUser(this.username, this.localPassword)
@@ -66,6 +68,13 @@ export class Login {
   moveToSignup(){
     this.navCtrl.push('Signup');
   }
+
+  // checking(){
+  //   this.service.checkForDuplicateUsername('faizy14')
+  //   .subscribe((data) => {
+  //     console.log(data);
+  //   })
+  // }
 
 
 }
