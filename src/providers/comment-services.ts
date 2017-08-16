@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CommentServices {
 
-  mainUrl: string = 'http://localhost:3000/comments';
+  mainUrl: string = 'https://limitless-woodland-73873.herokuapp.com/comments';
   
   constructor(public http: Http) {
     console.log('Hello CommentServices Provider');

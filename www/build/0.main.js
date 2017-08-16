@@ -1,13 +1,13 @@
 webpackJsonp([0],{
 
-/***/ 276:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup__ = __webpack_require__(286);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupModule", function() { return SignupModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41,14 +41,14 @@ SignupModule = __decorate([
 
 /***/ }),
 
-/***/ 285:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_user_services__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_user_services__ = __webpack_require__(198);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Signup; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -103,13 +103,13 @@ var Signup = Signup_1 = (function () {
                 .subscribe(function (data) {
                 console.log(data);
                 if (data == true) {
-                    console.log('i am in data ture check and the data is: ', data);
+                    // console.log('i am in data ture check and the data is: ', data);
                     resolve({
                         "username taken!": true
                     });
                 }
                 else {
-                    console.log('i am in data false check');
+                    // console.log('i am in data false check');
                     resolve(null);
                 }
             });
@@ -139,7 +139,7 @@ var Signup = Signup_1 = (function () {
         console.log(this.inputSection.get('firstname').value);
         console.log(this.inputSection.value);
         var body = this.inputSection.value;
-        console.log('here is the body: ', body);
+        // console.log('here is the body: ',body);
         // let body = {
         //   firstname: this.firstname,
         //   lastname : this.lastname,
@@ -164,12 +164,16 @@ var Signup = Signup_1 = (function () {
 Signup = Signup_1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-signup',template:/*ion-inline-start:"E:\MapPractice\src\pages\signup\signup.html"*/'<!--\n  Generated template for the Signup page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>signup</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form [formGroup]="inputSection" (ngSubmit)="enrollNewUser()">\n    <ion-grid>\n      <ion-row>\n        <ion-col col-6>    \n          <ion-item>\n            <ion-input type="text" placeholder="Firstname" formControlName="firstname" [class.invalid]="!inputSection.controls.firstname.valid && inputSection.controls.firstname.dirty"></ion-input>\n          </ion-item>\n        </ion-col>\n\n        <ion-col col-6>\n          <ion-item>\n            <ion-input type="text" placeholder="Lastname" formControlName="lastname"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="number" placeholder="Phone Number (03XXXXXXXXX)" formControlName="number"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row> \n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="text" placeholder="Username" formControlName="username" [class.meri]="!inputSection.controls.username.valid && inputSection.controls.username.touched"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      \n      <ion-item *ngIf="!inputSection.controls.username.valid  && (inputSection.controls.username.dirty)">\n                <p>Please enter a valid name.</p>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item>\n            <ion-input type="password" placeholder="Password" formControlName="password" [(ngModel)]=\'pass\'></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row> \n\n    </ion-grid>\n  </form>\n\n  <div class="signup-button">\n    <button ion-button block (tap)="enrollNewUser()" [disabled]=\'!inputSection.valid\'>Sign Up</button>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\signup\signup.html"*/,
+        selector: 'page-signup',template:/*ion-inline-start:"E:\MapPractice\src\pages\signup\signup.html"*/'<!--\n  Generated template for the Signup page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>signup</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form [formGroup]="inputSection" (ngSubmit)="enrollNewUser()">\n    <ion-grid>\n      <ion-row>\n        <ion-col col-6>    \n          <ion-item>\n            <ion-input type="text" placeholder="Firstname" formControlName="firstname" [class.invalid]="!inputSection.controls.firstname.valid && inputSection.controls.firstname.dirty"></ion-input>\n          </ion-item>\n        </ion-col>\n\n        <ion-col col-6>\n          <ion-item>\n            <ion-input type="text" placeholder="Lastname" formControlName="lastname"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="number" placeholder="Phone Number (03XXXXXXXXX)" formControlName="number"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row> \n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="text" placeholder="Username" formControlName="username" [class.meri]="!inputSection.controls.username.valid && inputSection.controls.username.touched"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      \n      <!-- <ion-item *ngIf="!inputSection.controls.username.valid  && (inputSection.controls.username.dirty)">\n                <p>Please enter a valid name.</p>\n      </ion-item> -->\n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item>\n            <ion-input type="password" placeholder="Password" formControlName="password" [(ngModel)]=\'pass\'></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row> \n\n    </ion-grid>\n  </form>\n\n  <div class="signup-button">\n    <button ion-button block (tap)="enrollNewUser()" [disabled]=\'!inputSection.valid\'>Sign Up</button>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\signup\signup.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_user_services__["a" /* UserServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_user_services__["a" /* UserServices */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_user_services__["a" /* UserServices */]])
 ], Signup);
 
-var Signup_1, _a, _b, _c, _d, _e;
+var Signup_1;
 //# sourceMappingURL=signup.js.map
 
 /***/ })

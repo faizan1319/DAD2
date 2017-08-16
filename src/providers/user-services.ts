@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserServices {
 
-  private mainUrl: string = 'http://localhost:3000/users/';
+  private mainUrl: string = 'https://limitless-woodland-73873.herokuapp.com/users/';
   constructor(private http: Http) {
     console.log('Hello UserServices Provider');
   }

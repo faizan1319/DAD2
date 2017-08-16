@@ -56,13 +56,13 @@ export class Signup {
             .subscribe((data) => {
                 console.log(data);
                 if(data == true) {
-                    console.log('i am in data ture check and the data is: ', data);
+                    // console.log('i am in data ture check and the data is: ', data);
                     resolve({
                         "username taken!" : true 
                     }) 
                 }
                 else{
-                  console.log('i am in data false check');
+                  // console.log('i am in data false check');
                   resolve(null);
                 } 
             })
@@ -96,7 +96,7 @@ export class Signup {
     console.log(this.inputSection.value);
     
     let body = this.inputSection.value;
-    console.log('here is the body: ',body);
+    // console.log('here is the body: ',body);
     // let body = {
     //   firstname: this.firstname,
     //   lastname : this.lastname,

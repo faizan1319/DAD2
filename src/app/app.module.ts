@@ -14,6 +14,7 @@ import { MyApp } from './app.component';
 import { UserServices } from "../providers/user-services";
 import { PostServices } from "../providers/post-services";
 import { CommentServices } from "../providers/comment-services";
+import { MediaCapture } from "@ionic-native/media-capture";
 // import { SignupValidators } from "../validators/signupValidations";
 
 @NgModule({
@@ -35,6 +36,7 @@ import { CommentServices } from "../providers/comment-services";
     Geolocation,
     SplashScreen,
     Camera,
+    MediaCapture,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServices,
     PostServices,

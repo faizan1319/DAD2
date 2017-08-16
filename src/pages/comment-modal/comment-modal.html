@@ -24,7 +24,7 @@
   <div class="comments-section scroll-content">
     <ion-item item-left>
       <ion-avatar item-left>
-        <img src= {{postUserDpUrl}}>
+        <img src= 'https://limitless-woodland-73873.herokuapp.com/{{postUserDpUrl}}'>
       </ion-avatar>
       <p><strong>{{postUsername}}: </strong>{{postDesc}}</p>
       <p>16m</p>
@@ -32,7 +32,7 @@
 
     <ion-item item-left *ngFor = 'let comment of comments'>
       <ion-avatar item-left>
-        <img src= {{comment.dp_url}}>
+        <img src= 'https://limitless-woodland-73873.herokuapp.com/{{comment.dp_url}}'>
       </ion-avatar>
       <p><strong>{{comment.username}}: </strong>{{comment.comment_text}}</p>
       <p>16m</p>

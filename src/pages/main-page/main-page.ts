@@ -1,9 +1,10 @@
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Component, ViewChild } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+// import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Platform, Slides, ModalController } from 'ionic-angular';
 import { PostServices } from "../../providers/post-services";
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 
 // import { Notifications } from '../../pages/notifications/notifications';
 // import { Maps } from "../maps/maps";
@@ -28,7 +29,7 @@ export class MainPage {
   slideTitle: string = "Trending";
   posts: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public camera: Camera, public modal:ModalController, private service: PostServices) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modal:ModalController, private service: PostServices, private mediaCapture: MediaCapture) {
   }
 
   loggedInUserId: number = this.navParams.get('loggedInUserId');
@@ -68,20 +69,28 @@ export class MainPage {
   
   openCamera()
   {
-      const options: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
-      }
+      // const options: CameraOptions = {
+      //   quality: 100,
+      //   destinationType: this.camera.DestinationType.DATA_URL,
+      //   encodingType: this.camera.EncodingType.JPEG,
+      //   mediaType: this.camera.MediaType.PICTURE
+      // }
       
-      this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      }, (err) => {
-      // Handle error
-      });
+      // this.camera.getPicture(options).then((imageData) => {
+      // // imageData is either a base64 encoded string or a file URI
+      // // If it's base64:
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      // }, (err) => {
+      // // Handle error
+      // });
+      
+      // let options: CaptureImageOptions = { limit: 3 };
+      this.mediaCapture.captureImage()
+      .then(
+        (data: MediaFile[]) => console.log(data),
+        (err: CaptureError) => console.error(err)
+      );
+
   }
 
   openNotifications()

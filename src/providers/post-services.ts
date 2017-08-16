@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PostServices {
 
-  mainUrl: string = 'http://localhost:3000/posts';
+  mainUrl: string = 'https://limitless-woodland-73873.herokuapp.com/posts';
 
   constructor(public http: Http) {
     console.log('Hello PostServices Provider');
