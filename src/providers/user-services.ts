@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 /*
@@ -14,14 +14,23 @@ import 'rxjs/add/operator/map';
 export class UserServices {
 
   private mainUrl: string = 'https://limitless-woodland-73873.herokuapp.com/users/';
+
+  // mainUrl: string = 'http://localhost:3000/users/';
+
+
   constructor(private http: Http) {
     console.log('Hello UserServices Provider');
   }
 
   loginUser(username: string, password: string) {
-     let localUrl: string = this.mainUrl+'login/'+username;;
+     let localUrl: string = this.mainUrl+'login';
 
-     return this.http.get(localUrl)
+     let body = {
+       username,
+       password
+     }
+
+     return this.http.post(localUrl, body)
      .map((res: Response) => res.json())
   }
 

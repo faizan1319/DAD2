@@ -35,23 +35,40 @@ export class Login {
   userLogin() {
     this.service.loginUser(this.username, this.localPassword)
     .subscribe((data) => {
-        if(data.length > 0) {
-          this.realPassword = data["0"].password;
-          if( this.localPassword == this.realPassword )
-          {
-            this.navCtrl.push('MainPage', {
-              loggedInUserId : data["0"].user_id 
-            });
-          }
-        }
-        else {
-          let toast = this.toastCtrl.create({
-          message: "There is no account associated with this username.",
-          showCloseButton: true,
-          closeButtonText: "Ok"
+      if(data.length == 2) {
+        let toast = this.toastCtrl.create({
+          message: 'Incorrect credentials! Please check your username or password.',
+          duration: 3000
         })
         toast.present();
-        }
+      }
+      else if(data.length == 1 ) {
+        console.log(data);
+        this.navCtrl.setRoot('MainPage', {
+          loggedInUserId    : data["0"].userId,
+          username          : this.username,
+          userType          : data["0"].userType,
+          firstname         : data["0"].firstname,
+          lastname          : data["0"].lastname,
+          email             : data["0"].email,
+          dpUrl             : data["0"].dpUrl,
+          phone             : data["0"].phone,
+          postCount         : data["0"].postCount,
+        }, {}, () => {
+          let toast = this.toastCtrl.create({
+            message: 'See whats happeing and show others what might help them :)',
+            duration: 3000
+          })
+          toast.present();
+        })
+      }
+      else {
+        let toast = this.toastCtrl.create({
+        message: "There is no account associated with this username.",
+        duration: 3000
+        })
+        toast.present();
+      }
         
     },(error) => {
         console.log('errorjee: ',error);

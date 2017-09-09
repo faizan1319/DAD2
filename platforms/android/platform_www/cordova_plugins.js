@@ -337,6 +337,30 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "id": "com-sarriaroman-photoviewer.PhotoViewer",
+        "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+        "pluginId": "com-sarriaroman-photoviewer",
+        "clobbers": [
+            "PhotoViewer"
+        ]
+    },
+    {
+        "id": "cordova-plugin-filepath.FilePath",
+        "file": "plugins/cordova-plugin-filepath/www/FilePath.js",
+        "pluginId": "cordova-plugin-filepath",
+        "clobbers": [
+            "window.FilePath"
+        ]
+    },
+    {
+        "id": "cordova-plugin-filechooser.FileChooser",
+        "file": "plugins/cordova-plugin-filechooser/www/fileChooser.js",
+        "pluginId": "cordova-plugin-filechooser",
+        "clobbers": [
+            "fileChooser"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -354,7 +378,10 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-file": "4.0.0",
     "cordova-plugin-media-capture": "1.4.3",
-    "cordova-plugin-file-transfer": "1.6.3"
+    "cordova-plugin-file-transfer": "1.6.3",
+    "com-sarriaroman-photoviewer": "1.1.10",
+    "cordova-plugin-filepath": "1.0.2",
+    "cordova-plugin-filechooser": "1.0.1"
 };
 // BOTTOM OF METADATA
 });

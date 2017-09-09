@@ -95,13 +95,37 @@
             "type": "registry",
             "id": "cordova-plugin-file@^4.0.0"
         },
-        "is_top_level": false,
+        "is_top_level": true,
         "variables": {}
     },
     "cordova-plugin-file-transfer": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-file-transfer"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com-sarriaroman-photoviewer": {
+        "source": {
+            "type": "registry",
+            "id": "com-sarriaroman-photoviewer"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-filepath": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-filepath"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-filechooser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-filechooser"
         },
         "is_top_level": true,
         "variables": {}

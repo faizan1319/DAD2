@@ -40,13 +40,22 @@
         },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.mappractice309404"
+        },
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
+        },
+        "cordova-plugin-filepath": {
+            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
+        },
+        "cordova-plugin-filechooser": {
+            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
-        },
-        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.mappractice309404"
         }
     }

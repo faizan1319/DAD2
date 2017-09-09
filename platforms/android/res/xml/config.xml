@@ -43,6 +43,19 @@
     <feature name="Capture">
         <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
     </feature>
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <feature name="PhotoViewer">
+        <param name="android-package" value="com.sarriaroman.PhotoViewer.PhotoViewer" />
+    </feature>
+    <feature name="FilePath">
+        <param name="android-package" value="com.hiddentao.cordova.filepath.FilePath" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="FileChooser">
+        <param name="android-package" value="com.megster.cordova.FileChooser" />
+    </feature>
     <name>MapPractice</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -85,7 +98,4 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <feature name="FileTransfer">
-        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
-    </feature>
 </widget>

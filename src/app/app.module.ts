@@ -15,6 +15,11 @@ import { UserServices } from "../providers/user-services";
 import { PostServices } from "../providers/post-services";
 import { CommentServices } from "../providers/comment-services";
 import { MediaCapture } from "@ionic-native/media-capture";
+import { PhotoViewer } from "@ionic-native/photo-viewer";
+import { FileTransfer } from "@ionic-native/file-transfer";
+import { File } from "@ionic-native/file";
+import { FilePath } from "@ionic-native/file-path";
+import { FileChooser } from "@ionic-native/file-chooser";
 // import { SignupValidators } from "../validators/signupValidations";
 
 @NgModule({
@@ -37,6 +42,11 @@ import { MediaCapture } from "@ionic-native/media-capture";
     SplashScreen,
     Camera,
     MediaCapture,
+    PhotoViewer,
+    File,
+    FileTransfer,
+    FilePath,
+    FileChooser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServices,
     PostServices,

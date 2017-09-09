@@ -64,29 +64,29 @@ export class Maps {
       let option = {enableHighAccuracy: true} ;
 
       this.geolocation.getCurrentPosition(option)
-                      .then((resp) => {
-                          let ionic: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
-                          let position: CameraPosition = {
-                            target: ionic,
-                            zoom: 100,
-                            tilt: 30
-                          };
-                          console.log('after ionic', ionic);
-              
-                          map.moveCamera(position);
+      .then((resp) => {
+          let ionic: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
+          let position: CameraPosition = {
+            target: ionic,
+            zoom: 100,
+            tilt: 30
+          };
+          console.log('after ionic', ionic);
 
-                          let markerOptions: MarkerOptions = {
-                            position: ionic,
-                            title: 'Ionic'
-                          };
+          map.moveCamera(position);
 
-                          const marker: any = map.addMarker(markerOptions)
-                            .then((marker: Marker) => {
-                                marker.showInfoWindow();
-                              });   
-                      })
-                      .catch((error) => {
-                          console.log('Error getting location', error);
-                        });
+          let markerOptions: MarkerOptions = {
+            position: ionic,
+            title: 'Ionic'
+          };
+
+          const marker: any = map.addMarker(markerOptions)
+            .then((marker: Marker) => {
+                marker.showInfoWindow();
+            });   
+      })
+      .catch((error) => {
+          console.log('Error getting location', error)
+      })
   }
 }

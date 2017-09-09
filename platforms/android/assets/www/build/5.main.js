@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 272:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps__ = __webpack_require__(281);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapsModule", function() { return MapsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notifications__ = __webpack_require__(290);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationsModule", function() { return NotificationsModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MapsModule = (function () {
-    function MapsModule() {
+var NotificationsModule = (function () {
+    function NotificationsModule() {
     }
-    return MapsModule;
+    return NotificationsModule;
 }());
-MapsModule = __decorate([
+NotificationsModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__maps__["a" /* Maps */],
+            __WEBPACK_IMPORTED_MODULE_2__notifications__["a" /* Notifications */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__maps__["a" /* Maps */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__notifications__["a" /* Notifications */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__maps__["a" /* Maps */]
+            __WEBPACK_IMPORTED_MODULE_2__notifications__["a" /* Notifications */]
         ]
     })
-], MapsModule);
+], NotificationsModule);
 
-//# sourceMappingURL=maps.module.js.map
+//# sourceMappingURL=notifications.module.js.map
 
 /***/ }),
 
-/***/ 281:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(201);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Maps; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Notifications; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,65 +59,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
 /**
- * Generated class for the Maps page.
+ * Generated class for the Notifications page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-var Maps = (function () {
-    function Maps(googleMaps, geolocation) {
-        this.googleMaps = googleMaps;
-        this.geolocation = geolocation;
+var Notifications = (function () {
+    function Notifications(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
     }
-    Maps.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad Maps');
+    Notifications.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Notifications');
     };
-    Maps.prototype.ngAfterViewInit = function () {
-        this.loadMap();
-    };
-    Maps.prototype.loadMap = function () {
-        // console.log('variables', this.myLocationLat, this.myLocationLng);
-        var element = document.getElementById('map');
-        var map = this.googleMaps.create(element);
-        map.one(__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["b" /* GoogleMapsEvent */].MAP_READY).then(function () { return console.log('Map is ready!'); });
-        var option = { enableHighAccuracy: true };
-        this.geolocation.getCurrentPosition(option)
-            .then(function (resp) {
-            var ionic = new __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["c" /* LatLng */](resp.coords.latitude, resp.coords.longitude);
-            var position = {
-                target: ionic,
-                zoom: 100,
-                tilt: 30
-            };
-            console.log('after ionic', ionic);
-            map.moveCamera(position);
-            var markerOptions = {
-                position: ionic,
-                title: 'Ionic'
-            };
-            var marker = map.addMarker(markerOptions)
-                .then(function (marker) {
-                marker.showInfoWindow();
-            });
-        })
-            .catch(function (error) {
-            console.log('Error getting location', error);
-        });
-    };
-    return Maps;
+    return Notifications;
 }());
-Maps = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["e" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_6" /* Component */])({
-        selector: 'page-maps',template:/*ion-inline-start:"E:\MapPractice\src\pages\maps\maps.html"*/'<!--\n  Generated template for the Maps page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>maps</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div map id=\'map\' style="height:70%"></div>  \n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\maps\maps.html"*/,
+Notifications = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
+        selector: 'page-notifications',template:/*ion-inline-start:"E:\MapPractice\src\pages\notifications\notifications.html"*/'<!--\n  Generated template for the Notifications page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>notifications</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>2m</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>4h</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n    <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>2m</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>4h</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>2m</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>4h</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>2m</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>4h</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>2m</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>4h</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n      \n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>3d</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>2w</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>3d</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>2w</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n    <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>3d</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>2w</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n    <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/me.jpg">\n          </ion-avatar>\n          <h2>Faizan Khan</h2>\n          <p>just posted a new post.</p>\n          <ion-note>3d</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image1.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n        <ion-item>\n          <ion-avatar item-left>\n            <img src="assets/img/daniyal.jpg">\n          </ion-avatar>\n          <h2>Daniyal</h2>\n          <p>suggested on your post.</p>\n          <ion-note>2w</ion-note>\n          <ion-thumbnail item-right>\n            <img src="assets/img/image2.jpg">\n          </ion-thumbnail>\n        </ion-item>\n\n      </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\notifications\notifications.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */]])
-], Maps);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+], Notifications);
 
-//# sourceMappingURL=maps.js.map
+//# sourceMappingURL=notifications.js.map
 
 /***/ })
 

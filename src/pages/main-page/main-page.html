@@ -27,12 +27,15 @@
       <ion-icon name="camera" (tap)="openCamera()"></ion-icon>
     </div>
     <div class="side-bar-row">
+      <ion-icon name="videocam" (tap)="openVideoCam()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
       <ion-icon name="settings" (tap)="moveToRelatedNews()"></ion-icon>
     </div>
     <div class="side-bar-row">
       <ion-icon ios="md-globe" md="md-globe" (tap)="moveToMaps()"></ion-icon>
     </div>
-
+    
   </div>
 
   <div class = "main-content">
@@ -46,39 +49,46 @@
         <ion-slide class="scroll-content">  
           
           <ion-row>
-            <ion-card *ngFor="let post of posts">
+            <ion-card *ngFor="let post of trendingPosts">
               <ion-item>
-                <ion-icon name="pin" item-right (tap)="openMapModal(post.post_lat, post.post_lng, post.post_title)"></ion-icon>
+                <ion-icon name="pin" item-right (tap)="openMapModal(post.postLat, post.postLng, post.postTitle)"></ion-icon>
                 <ion-avatar item-left>
-                  <img src= 'https://limitless-woodland-73873.herokuapp.com/{{post.dp_url}}'>
+                  <!-- <img src= 'https://limitless-woodland-73873.herokuapp.com/{{post.dp_url}}'> -->
+                  <img src= '{{hostURL}}{{post.dpUrl}}'>
                 </ion-avatar>
                 <h2>{{post.username}}</h2>
                 <p>May 12, 1984</p>
               </ion-item>
-              <img src="assets/img/image2.jpg">
+              <img *ngIf='post.postMediaType == 1' src="assets/img/image2.jpg">
+              <video *ngIf='post.postMediaType == 2' controls>
+                <source src='{{hostURL}}/{{post.mediaFilePath}}' type="video/mp4">
+              </video>
               <ion-card-content>
-                <p><strong>Title: </strong>{{post.post_title}}</p>
-                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <p><strong>Title: </strong>{{post.postTitle}}</p>
+                <p><strong>Categories:</strong></p>
+                <div *ngFor = 'let postCat of post.postCategories'>
+                  <p>{{postCat}}</p>
+                </div>
                 <div class="separator"></div>
-                <p (tap)="openCommentsModal(post.post_id, post.post_desc, post.username, post.dp_url)">{{post.post_desc}}</p>
+                <p (tap)="openCommentsModal(post.postId, post.postDesc, post.username, post.dpUrl)">{{post.postDesc}}</p>
               </ion-card-content>
               <ion-row>
                 <ion-col>
                   <button ion-button color="primary" clear icon-left>
                     <ion-icon name='thumbs-up'></ion-icon>
-                    {{post.post_likes}}
+                    {{post.postLikes}}
                   </button>
                 </ion-col>
                 <ion-col>
-                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal(post.post_id, post.post_desc, post.username, post.dp_url)">
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal(post.postId, post.postDesc, post.username, post.dpUrl)">
                       <ion-icon name='text'></ion-icon>
-                      {{post.post_comment_count}}
+                      {{post.postCommentCount}}
                     </button>
                 </ion-col>
                 <ion-col>
                   <button ion-button color="primary" clear icon-left>
                     <ion-icon name='thumbs-down'></ion-icon>
-                    {{post.post_dislikes}}
+                    {{post.postDislikes}}
                   </button>
                 </ion-col>
                 <ion-col align-self-center text-center>
@@ -93,132 +103,7 @@
         <ion-slide class="scroll-content">  
           
           <ion-row>
-            <ion-card>
-              <ion-item>
-                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
-                <ion-avatar item-left>
-                  <img src="assets/img/daniyal.jpg">
-                </ion-avatar>
-                <h2>Sarah Connor</h2>
-                <p>May 12, 1984</p>
-              </ion-item>
-              <img src="assets/img/image2.jpg">
-              <ion-card-content>
-                <p><strong>Title: </strong>Lag Gaey Lasan</p>
-                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
-                <div class="separator"></div>
-                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
-              </ion-card-content>
-              <ion-row>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-up'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
-                      <ion-icon name='text'></ion-icon>
-                      64
-                    </button>
-                </ion-col>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-down'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col align-self-center text-center>
-                  <ion-note>30yr ago</ion-note>
-                </ion-col>
-              </ion-row>
-            </ion-card>
-          </ion-row>
-
-          <ion-row>
-            <ion-card>
-              <ion-item>
-                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
-                <ion-avatar item-left>
-                  <img src="assets/img/daniyal.jpg">
-                </ion-avatar>
-                <h2>Sarah Connor</h2>
-                <p>May 12, 1984</p>
-              </ion-item>
-              <img src="assets/img/image2.jpg">
-              <ion-card-content>
-                <p><strong>Title: </strong>Lag Gaey Lasan</p>
-                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
-                <div class="separator"></div>
-                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
-              </ion-card-content>
-              <ion-row>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-up'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
-                      <ion-icon name='text'></ion-icon>
-                      64
-                    </button>
-                </ion-col>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-down'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col align-self-center text-center>
-                  <ion-note>30yr ago</ion-note>
-                </ion-col>
-              </ion-row>
-            </ion-card>
-          </ion-row>
-
-          <ion-row>
-            <ion-card>
-              <ion-item>
-                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
-                <ion-avatar item-left>
-                  <img src="assets/img/daniyal.jpg">
-                </ion-avatar>
-                <h2>Sarah Connor</h2>
-                <p>May 12, 1984</p>
-              </ion-item>
-              <img src="assets/img/image2.jpg">
-              <ion-card-content>
-                <p><strong>Title: </strong>Lag Gaey Lasan</p>
-                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
-                <div class="separator"></div>
-                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
-              </ion-card-content>
-              <ion-row>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-up'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
-                      <ion-icon name='text'></ion-icon>
-                      64
-                    </button>
-                </ion-col>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-down'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col align-self-center text-center>
-                  <ion-note>30yr ago</ion-note>
-                </ion-col>
-              </ion-row>
-            </ion-card>
+            
           </ion-row>
           
         </ion-slide>
@@ -226,89 +111,54 @@
         <ion-slide class="scroll-content">  
 
           <ion-row>
-            <ion-card>
+             <ion-card *ngFor="let post of postByLoggedInUser">
               <ion-item>
-                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
+                <ion-icon name="pin" item-right (tap)="openMapModal(post.postLat, post.postLng, post.postTitle)"></ion-icon>
                 <ion-avatar item-left>
-                  <img src="assets/img/daniyal.jpg">
+                  <!-- <img src= 'https://limitless-woodland-73873.herokuapp.com/{{post.dp_url}}'> -->
+                  <img src= '{{hostURL}}{{loggedInUserDpURL}}'>
                 </ion-avatar>
-                <h2>Sarah Connor</h2>
+                <h2>{{loggedInUsername}}</h2>
                 <p>May 12, 1984</p>
               </ion-item>
-              <img src="assets/img/image2.jpg">
+              <img *ngIf='post.postMediaType == 1' src="{{hostURL}}{{post.postMediaFileURL}}">
+              <video *ngIf='post.postMediaType == 2' controls>
+                <source src='{{hostURL}}{{post.postMediaFileURL}}' type="video/mp4">
+              </video>
               <ion-card-content>
-                <p><strong>Title: </strong>Lag Gaey Lasan</p>
-                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
+                <p><strong>Title: </strong>{{post.postTitle}}</p>
+                <p><strong>Categories:</strong></p>
+                <div style = 'height: 4px;'> </div>
+                <div *ngFor = 'let postCat of post.postCategories'>
+                  <p>{{postCat.categoryName}}</p>
+                </div>
                 <div class="separator"></div>
-                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
+                <p (tap)="openCommentsModal(post.postId, post.postDesc, loggedInUsername, loggedInUserDpURL)">{{post.postDesc}}</p>
               </ion-card-content>
               <ion-row>
                 <ion-col>
                   <button ion-button color="primary" clear icon-left>
                     <ion-icon name='thumbs-up'></ion-icon>
-                    30
+                    {{post.postLikes}}
                   </button>
                 </ion-col>
                 <ion-col>
-                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal(post.postId, post.postDesc, loggedInUsername, loggedInUserDpURL)">
                       <ion-icon name='text'></ion-icon>
-                      64
+                      {{post.postCommentCount}}
                     </button>
                 </ion-col>
                 <ion-col>
                   <button ion-button color="primary" clear icon-left>
                     <ion-icon name='thumbs-down'></ion-icon>
-                    30
+                    {{post.postDislikes}}
                   </button>
                 </ion-col>
                 <ion-col align-self-center text-center>
                   <ion-note>30yr ago</ion-note>
                 </ion-col>
               </ion-row>
-            </ion-card>
-          </ion-row>
-
-          <ion-row>
-            <ion-card>
-              <ion-item>
-                <ion-icon name="pin" item-right (tap)="openMapModal()"></ion-icon>
-                <ion-avatar item-left>
-                  <img src="assets/img/daniyal.jpg">
-                </ion-avatar>
-                <h2>Sarah Connor</h2>
-                <p>May 12, 1984</p>
-              </ion-item>
-              <img src="assets/img/image2.jpg">
-              <ion-card-content>
-                <p><strong>Title: </strong>Lag Gaey Lasan</p>
-                <p><strong>Categories:</strong> Traffic Jam, Protest</p>
-                <div class="separator"></div>
-                <p (tap)="openCommentsModal()">I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
-              </ion-card-content>
-              <ion-row>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-up'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal()">
-                      <ion-icon name='text'></ion-icon>
-                      64
-                    </button>
-                </ion-col>
-                <ion-col>
-                  <button ion-button color="primary" clear icon-left>
-                    <ion-icon name='thumbs-down'></ion-icon>
-                    30
-                  </button>
-                </ion-col>
-                <ion-col align-self-center text-center>
-                  <ion-note>30yr ago</ion-note>
-                </ion-col>
-              </ion-row>
-            </ion-card>
+            </ion-card> 
           </ion-row>
 
         </ion-slide>

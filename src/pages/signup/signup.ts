@@ -107,6 +107,7 @@ export class Signup {
 
     this.service.newUser(body)
     .subscribe((data) => {
+      console.log(data);
       this.navCtrl.setRoot('Login', {}, {}, () => {
         let toast = this.toastCtrl.create({
           message: data.message,
