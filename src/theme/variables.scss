@@ -24,13 +24,24 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #000,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  buttonColor:   #9bc49e,
+  bg: #9bc49e
 );
+$colors-ios: copy-colors($colors);
+$colors-md: copy-colors($colors);
 
+$background-color: #eaf0f2;
+
+$list-ios-background-color: #fff;
+$list-md-background-color: #fff;
+
+$button-ios-background-color: color($colors-ios, buttonColor);
+$button-md-background-color: color($colors-md, buttonColor);
 
 // App iOS Variables
 // --------------------------------------------------

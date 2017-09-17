@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 283:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup__ = __webpack_require__(294);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupModule", function() { return SignupModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__upload_test__ = __webpack_require__(296);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UploadTestPageModule", function() { return UploadTestPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SignupModule = (function () {
-    function SignupModule() {
+var UploadTestPageModule = (function () {
+    function UploadTestPageModule() {
     }
-    return SignupModule;
+    return UploadTestPageModule;
 }());
-SignupModule = __decorate([
+UploadTestPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* Signup */],
+            __WEBPACK_IMPORTED_MODULE_2__upload_test__["a" /* UploadTestPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__signup__["a" /* Signup */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__upload_test__["a" /* UploadTestPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* Signup */]
+            __WEBPACK_IMPORTED_MODULE_2__upload_test__["a" /* UploadTestPage */]
         ]
     })
-], SignupModule);
+], UploadTestPageModule);
 
-//# sourceMappingURL=signup.module.js.map
+//# sourceMappingURL=upload-test.module.js.map
 
 /***/ }),
 
-/***/ 294:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_user_services__ = __webpack_require__(199);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Signup; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_google_maps__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(200);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadTestPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,120 +63,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import { SignupValidators } from "../../validators/signupValidations";
+
 
 /**
- * Generated class for the Signup page.
+ * Generated class for the UploadTestPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-var Signup = Signup_1 = (function () {
-    function Signup(navCtrl, navParams, toastCtrl, formBuilder, 
-        // public signupVal    : SignupValidators,
-        service) {
-        this.navCtrl = navCtrl;
+var UploadTestPage = (function () {
+    function UploadTestPage(navParams, geolocation, transfer) {
         this.navParams = navParams;
-        this.toastCtrl = toastCtrl;
-        this.formBuilder = formBuilder;
-        this.service = service;
-        Signup_1.service = service;
-        this.inputSection = formBuilder.group({
-            firstname: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].maxLength(20)]],
-            lastname: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].maxLength(20)]],
-            number: [''],
-            username: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].maxLength(20)], Signup_1.checkForDuplicateUsername],
-            email: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].email], Signup_1.checkForDuplicateEmail],
-            password: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].minLength(8)]]
-            // confirmPassword : ['', this.checkConfirmPassword]
-        });
+        this.geolocation = geolocation;
+        this.transfer = transfer;
+        this.loggedInUserId = this.navParams.get('loggedInUserId');
+        this.username = this.navParams.get('username');
+        this.mediaType = this.navParams.get('mediaType');
+        this.mediaFilePath = "/assets/images/me.jpg";
+        this.postTitle = 'han bhai yelo';
+        this.postDesc = 'kesa diya!!!!!!!!!!!!!!!!!!!!!!!!!!!';
     }
-    Signup.prototype.ionViewDidLoad = function () {
-        console.log("signup page did load");
+    UploadTestPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UploadTestPage');
+        this.upload();
     };
-    // checkConfirmPassword(control: FormControl) {
-    //   if(control.value == this.inputSection.controls.password) return null;
-    //   else return true;
-    // }
-    Signup.checkForDuplicateEmail = function (control) {
-        return new Promise(function (resolve) {
-            Signup_1.service.checkForEmailAlreadyExist(control.value)
-                .subscribe(function (data) {
-                console.log(data);
-                if (data == true) {
-                    // console.log('i am in data ture check and the data is: ', data);
-                    resolve({
-                        "username taken!": true
-                    });
-                }
-                else {
-                    // console.log('i am in data false check');
-                    resolve(null);
-                }
-            });
-        });
-    };
-    Signup.checkForDuplicateUsername = function (control) {
-        return new Promise(function (resolve) {
-            Signup_1.service.checkForDuplicateUsername(control.value)
-                .subscribe(function (data) {
-                console.log(data);
-                if (data == true) {
-                    console.log('i am in data ture check and the data is: ', data);
-                    resolve({
-                        "username taken!": true
-                    });
-                }
-                else {
-                    console.log('i am in data false check');
-                    resolve(null);
-                }
-            });
-        });
-    };
-    Signup.prototype.enrollNewUser = function () {
+    UploadTestPage.prototype.upload = function () {
         var _this = this;
-        console.log('hey there');
-        console.log(this.inputSection.get('firstname').value);
-        console.log(this.inputSection.value);
-        var body = this.inputSection.value;
-        // console.log('here is the body: ',body);
-        // let body = {
-        //   firstname: this.firstname,
-        //   lastname : this.lastname,
-        //   username : this.username,
-        //   email : this.email,
-        //   password : this.password
-        // }
-        this.service.newUser(body)
-            .subscribe(function (data) {
-            console.log(data);
-            _this.navCtrl.setRoot('Login', {}, {}, function () {
-                var toast = _this.toastCtrl.create({
-                    message: data.message,
-                    showCloseButton: true,
-                    closeButtonText: "Ok"
-                });
-                toast.present();
+        var option = { enableHighAccuracy: true };
+        this.geolocation.getCurrentPosition(option)
+            .then(function (resp) {
+            var ionic = new __WEBPACK_IMPORTED_MODULE_3__ionic_native_google_maps__["b" /* LatLng */](resp.coords.latitude, resp.coords.longitude);
+            var fileTransfer = _this.transfer.create();
+            var fileName = _this.username + '_' + _this.loggedInUserId + '_' + _this.postTitle;
+            var options = {
+                fileKey: 'File',
+                fileName: fileName,
+                params: {
+                    postTitle: _this.postTitle,
+                    postDesc: _this.postDesc,
+                    postLat: ionic.lat,
+                    postLng: ionic.lng,
+                    postMediaType: _this.mediaType,
+                    userId: _this.loggedInUserId
+                }
+            };
+            console.log('file upload options: ', options);
+            console.log(_this.mediaFilePath);
+            fileTransfer.upload(_this.mediaFilePath, 'http://localhost:3000/images/postImages', options)
+                .then(function (data) {
+                console.log('image has been uploaded: ', data);
+            }, function (err) {
+                console.log('image could not be uploaded: ', err);
             });
         });
     };
-    return Signup;
+    return UploadTestPage;
 }());
-Signup = Signup_1 = __decorate([
+UploadTestPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-signup',template:/*ion-inline-start:"E:\MapPractice\src\pages\signup\signup.html"*/'<!--\n  Generated template for the Signup page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>signup</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form [formGroup]="inputSection">\n    <ion-grid>\n      <ion-row>\n        <ion-col col-6>    \n          <ion-item>\n            <ion-input type="text" placeholder="Firstname" formControlName="firstname" [class.invalid]="!inputSection.controls.firstname.valid && inputSection.controls.firstname.dirty"></ion-input>\n          </ion-item>\n        </ion-col>\n\n        <ion-col col-6>\n          <ion-item>\n            <ion-input type="text" placeholder="Lastname" formControlName="lastname"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="number" placeholder="Phone Number (03XXXXXXXXX)" formControlName="number"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row> \n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="text" placeholder="Username" formControlName="username" [class.meri]="!inputSection.controls.username.valid && inputSection.controls.username.touched"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      \n      <!-- <ion-item *ngIf="!inputSection.controls.username.valid  && (inputSection.controls.username.dirty)">\n                <p>Please enter a valid name.</p>\n      </ion-item> -->\n\n      <ion-row>\n        <ion-col>\n          <ion-item>          \n            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item>\n            <ion-input type="password" placeholder="Password" formControlName="password" [(ngModel)]=\'pass\'></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row> \n\n    </ion-grid>\n  </form>\n\n  <div class="signup-button">\n    <button ion-button block (tap)="enrollNewUser()" [disabled]=\'!inputSection.valid\'>Sign Up</button>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\signup\signup.html"*/,
+        selector: 'page-upload-test',template:/*ion-inline-start:"E:\MapPractice\src\pages\upload-test\upload-test.html"*/'<!--\n  Generated template for the UploadTestPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>upload-test</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-img [src] = \'mediaFilePath\'></ion-img>\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\upload-test\upload-test.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */],
-        __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_user_services__["a" /* UserServices */]])
-], Signup);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */]])
+], UploadTestPage);
 
-var Signup_1;
-//# sourceMappingURL=signup.js.map
+//# sourceMappingURL=upload-test.js.map
 
 /***/ })
 

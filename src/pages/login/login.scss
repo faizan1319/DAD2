@@ -1,5 +1,9 @@
 page-login {
 
+ion-navbar{
+    text-align: center;
+}
+
 #logo{     
     height: 150px;
     width: 150px;
@@ -23,6 +27,14 @@ page-login {
 
 .separator{
     height: 25px;
+}
+
+.item-md{
+    background-color: #eaf0f2;
+}
+
+.item-ios{
+    background-color: #eaf0f2;
 }
 
 

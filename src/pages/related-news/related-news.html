@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>relatedNews</ion-title>
+  <ion-navbar color="bg">
+    <ion-title>Do Something About All This</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,6 +16,7 @@
 <ion-content>
 
   <div class="side fixed-content">
+
     <div class="side-bar-row">
       <ion-icon name="search"></ion-icon>
     </div>
@@ -26,28 +27,47 @@
       <ion-icon name="camera" (tap)="openCamera()"></ion-icon>
     </div>
     <div class="side-bar-row">
+      <ion-icon name="videocam" (tap)="openVideoCam()"></ion-icon>
+    </div>
+    <div class="side-bar-row">
       <ion-icon name="settings" (tap)="moveToRelatedNews()"></ion-icon>
     </div>
     <div class="side-bar-row">
       <ion-icon ios="md-globe" md="md-globe" (tap)="moveToMaps()"></ion-icon>
     </div>
+    
   </div>
 
-  <div class="main-content">
-    <div class="slide-title">
-      <ion-title>{{slideTitle}}</ion-title>
-    </div>
+  <div class="feeds scroll-content">
+    <ion-card class="adv-map">
+      <div style="position: relative">
+        <div id='map'></div>
+        <ion-fab right top>
+        <button ion-fab class="fab-map">
+        <ion-icon name='pin'></ion-icon>
+        </button>
+        </ion-fab>
+      </div>
+      <ion-item>
+        <ion-icon color="subtle" large item-start name='football'></ion-icon>
+        <h2>Museum of Football</h2>
+        <p>11 N. Way St, Madison, WI 53703</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon color="subtle" large item-start name='wine'></ion-icon>
+        <h2>Institute of Fine Cocktails</h2>
+        <p>14 S. Hop Avenue, Madison, WI 53703</p>
+      </ion-item>
+      <ion-item actions>
+        <span ion-text item-start color="secondary" class="item-bold">18 min</span>
+        <span ion-text item-start color="subtle">(2.6 mi)</span>
+        <button ion-button color="primary" clear item-end icon-start>
+          <ion-icon name='navigate'></ion-icon>
+          Start
+        </button>
+      </ion-item>
 
-    <div class="feeds scroll-content">
-      <ion-slides>
-        <ion-slide>
-          <div class="">
-            
-          </div>
-        </ion-slide>
-
-      </ion-slides>
-    </div>
+    </ion-card>
   </div>
 
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Platform, Slides, ModalController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -43,6 +43,7 @@ export class MainPage {
   constructor(
     public navCtrl        : NavController,
     public navParams      : NavParams,
+    public toastCtrl      : ToastController,
     public modal          : ModalController,
     private service       : PostServices,
     private mediaCapture  : MediaCapture,
@@ -80,6 +81,13 @@ export class MainPage {
     if(this.slideIndex == 1)
     {
       this.slideTitle = "Subscriptions";
+      this.service.getUserSubscribtionPosts(this.loggedInUserId)
+      .subscribe( (data)=> {
+        if(data != null) {
+          this.subscribedCategoriesPosts = data;
+          console.log(this.subscribedCategoriesPosts);
+        }
+      })
     }
     if(this.slideIndex >= 2)
     {
@@ -178,6 +186,16 @@ export class MainPage {
   openNotifications()
   {
     this.navCtrl.push('Notifications');
+  }
+
+  logout(){
+    this.navCtrl.setRoot('WelcomePage', {}, {}, () => {
+    let toast = this.toastCtrl.create({
+      message: 'Come Back Soon!',
+      duration: 3000
+    })
+    toast.present();
+  })
   }
 
   openPostDetail()

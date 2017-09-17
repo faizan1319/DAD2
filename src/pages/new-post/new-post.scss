@@ -1,5 +1,9 @@
 page-new-post {
 
+ion-navbar{
+    text-align: center;
+}
+
 .media{
     width: 100%;
     height: auto;
@@ -10,6 +14,11 @@ page-new-post {
 .media-image ion-img{
     width: 50%;
     contain: unset;
+}
+
+.media-video{
+    width: 100%;
+    height: auto;
 }
 
 }

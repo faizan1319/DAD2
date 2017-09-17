@@ -6,8 +6,14 @@
 -->
 <ion-header class="header">
 
-  <ion-navbar>
+  <ion-navbar color="bg">
     <ion-title>MainPage</ion-title>
+    <ion-buttons end>
+      <button ion-button (tap)='logout()' clear>
+        <ion-icon name='log-out'></ion-icon>
+      </button>
+      <!-- <ion-icon name='log-out' (tap)='logout()'></ion-icon> -->
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -59,15 +65,16 @@
                 <h2>{{post.username}}</h2>
                 <p>May 12, 1984</p>
               </ion-item>
-              <img *ngIf='post.postMediaType == 1' src="assets/img/image2.jpg">
+              <img *ngIf='post.postMediaType == 1' src="{{hostURL}}{{post.postMediaFileURL}}">
               <video *ngIf='post.postMediaType == 2' controls>
                 <source src='{{hostURL}}/{{post.mediaFilePath}}' type="video/mp4">
               </video>
               <ion-card-content>
                 <p><strong>Title: </strong>{{post.postTitle}}</p>
                 <p><strong>Categories:</strong></p>
+                <div style = 'height: 4px;'> </div>
                 <div *ngFor = 'let postCat of post.postCategories'>
-                  <p>{{postCat}}</p>
+                  <p>{{postCat.categoryName}}</p>
                 </div>
                 <div class="separator"></div>
                 <p (tap)="openCommentsModal(post.postId, post.postDesc, post.username, post.dpUrl)">{{post.postDesc}}</p>
@@ -103,7 +110,54 @@
         <ion-slide class="scroll-content">  
           
           <ion-row>
-            
+            <ion-card *ngFor="let post of subscribedCategoriesPosts">
+              <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal(post.postLat, post.postLng, post.postTitle)"></ion-icon>
+                <ion-avatar item-left>
+                  <!-- <img src= 'https://limitless-woodland-73873.herokuapp.com/{{post.dp_url}}'> -->
+                  <img src= '{{hostURL}}{{post.dpUrl}}'>
+                </ion-avatar>
+                <h2>{{post.username}}</h2>
+                <p>May 12, 1984</p>
+              </ion-item>
+              <img *ngIf='post.postMediaType == 1' src="{{hostURL}}{{post.postMediaFileURL}}">
+              <video *ngIf='post.postMediaType == 2' controls>
+                <source src='{{hostURL}}/{{post.mediaFilePath}}' type="video/mp4">
+              </video>
+              <ion-card-content>
+                <p><strong>Title: </strong>{{post.postTitle}}</p>
+                <p><strong>Categories:</strong></p>
+                <div style = 'height: 4px;'> </div>
+                <div *ngFor = 'let postCat of post.postCategories'>
+                  <p>{{postCat.categoryName}}</p>
+                </div>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal(post.postId, post.postDesc, post.username, post.dpUrl)">{{post.postDesc}}</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    {{post.postLikes}}
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal(post.postId, post.postDesc, post.username, post.dpUrl)">
+                      <ion-icon name='text'></ion-icon>
+                      {{post.postCommentCount}}
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    {{post.postDislikes}}
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+            </ion-card>
           </ion-row>
           
         </ion-slide>

@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>commentModal</ion-title>
+  <ion-navbar color="bg">
+    <ion-title>Whats Your Point</ion-title>
     <ion-buttons start>
       <button ion-button (tap)="dismiss()">Close</button>
     </ion-buttons>
@@ -32,9 +32,9 @@
 
     <ion-item item-left *ngFor = 'let comment of comments'>
       <ion-avatar item-left>
-        <img src= 'https://limitless-woodland-73873.herokuapp.com/{{comment.dp_url}}'>
+        <img src= 'https://limitless-woodland-73873.herokuapp.com/{{comment.dpUrl}}'>
       </ion-avatar>
-      <p><strong>{{comment.username}}: </strong>{{comment.comment_text}}</p>
+      <p><strong>{{comment.username}}: </strong>{{comment.commentText}}</p>
       <p>16m</p>
     </ion-item>
   </div>

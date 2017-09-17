@@ -1,9 +1,18 @@
 page-main-page {
 
+ion-navbar{
+    text-align: center;
+}
+
+ion-navbar ion-icon{
+    font-size: 2.8rem;
+    color: #fff;
+}
+
 .side{
     width : 11%;
     height: 100%; 
-    background: blanchedalmond;
+    background: #fff;
     text-align: center;
 }
 

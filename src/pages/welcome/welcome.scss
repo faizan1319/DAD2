@@ -1,0 +1,54 @@
+page-welcome {
+ion-navbar{
+    text-align: center;
+}
+
+ion-content {
+    background-image: url('../assets/images/bgImg3.jpg');
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    
+}
+
+.center-buttons {
+    transform: translate(0, 50vh);
+}
+
+.title h1{
+    text-align: center;
+    font-family: "Lucida Bright", Georgia, serif;
+}
+
+.title h4{
+    text-align: center;
+    font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+    font-style: italic;
+    font-weight: bold; 
+}
+
+
+
+// .bg-img{
+//     position: absolute;
+//     background-image: url('/assets/images/bgImg3.jpg');
+//     background-size:     cover;                      /* <------ */
+//     background-repeat:   no-repeat;
+//     background-position: center center;
+// }
+
+
+
+// ion-content::after {
+//   content: "";
+//   background: url(image.jpg);
+//   opacity: 0.5;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   position: absolute;
+//   z-index: -1;   
+// }
+
+}
