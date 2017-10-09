@@ -13,7 +13,8 @@ import {
   LatLng,
   CameraPosition,
   MarkerOptions,
-  Marker
+  Marker,
+  GoogleMapOptions
 } from '@ionic-native/google-maps';
 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -32,9 +33,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 export class Maps {
     myLocationLng: number;
     myLocationLat: number;
-    map: GoogleMap;
-    lat: any;
-    lng: any;
+    // map: GoogleMap;
+    // lat: any;
+    // lng: any;
 
   constructor(private googleMaps: GoogleMaps, private geolocation: Geolocation) {
   }
@@ -42,51 +43,88 @@ export class Maps {
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad Maps');
-  }
-
-  ngAfterViewInit()
-  {
     this.loadMap();
   }
 
-  myLocaqtion: any ;
+  // ngAfterViewInit()
+  // {
+  // }
 
   loadMap()
   {
-      // console.log('variables', this.myLocationLat, this.myLocationLng);
+    console.log('in load map');
+    // let option = {enableHighAccuracy: true} ;
+    // this.geolocation.getCurrentPosition(option)
+    // .then((resp) => {
+      let mapOptions: GoogleMapOptions = {
+        camera: {
+          zoom: 18,
+          tilt: 30
+        }
+      };
 
       let element: HTMLElement = document.getElementById('map');
 
-      let map: GoogleMap = this.googleMaps.create(element);
+      let map: GoogleMap = this.googleMaps.create(element, mapOptions);
+      // let map: GoogleMap = this.googleMaps.create(element);
 
-      map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
+      
+      map.one(GoogleMapsEvent.MAP_READY).then(() => {
+        console.log('Map is ready!')
+        let option = {enableHighAccuracy: true} ;
+        this.geolocation.getCurrentPosition(option)
+        .then((resp) => {
+          let target = {
+            lat: resp.coords.latitude,
+            lng: resp.coords.longitude
+          }
 
-      let option = {enableHighAccuracy: true} ;
+          let cameraViewCenter : CameraPosition<any> = {
+            target,
+            tilt: 30,
+            zoom: 12
+          }
 
-      this.geolocation.getCurrentPosition(option)
-      .then((resp) => {
-          let ionic: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
-          let position: CameraPosition = {
-            target: ionic,
-            zoom: 100,
-            tilt: 30
-          };
-          console.log('after ionic', ionic);
+          map.moveCamera(cameraViewCenter);
 
-          map.moveCamera(position);
+          map.addMarker({
+            title: 'Me',
+            icon: 'blue',
+            animation: 'DROP',
+            position: target
+          })
+          .then(marker => {
+            marker.on(GoogleMapsEvent.MARKER_CLICK)
+              .subscribe(() => {
+                alert('clicked');
+              });
+          });
 
-          let markerOptions: MarkerOptions = {
-            position: ionic,
-            title: 'Ionic'
-          };
+        })
+      });
 
-          const marker: any = map.addMarker(markerOptions)
-            .then((marker: Marker) => {
-                marker.showInfoWindow();
-            });   
-      })
-      .catch((error) => {
-          console.log('Error getting location', error)
-      })
+      // let ionic: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
+      // let position: CameraPosition = {
+      //   target: ionic,
+      //   zoom: 100,
+      //   tilt: 30
+      // };
+      // console.log('after ionic', ionic);
+
+      // map.moveCamera(position);
+
+      // let markerOptions: MarkerOptions = {
+      //   position: ionic,
+      //   title: 'Me'
+      // };
+
+      // const marker: any = map.addMarker(markerOptions)
+      // .then((marker: Marker) => {
+      //     marker.showInfoWindow();
+      // });   
+    // })
+    // .catch((error) => {
+    //     console.log('Error getting location', error)
+    // })
   }
 }

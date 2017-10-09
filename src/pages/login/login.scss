@@ -5,8 +5,8 @@ ion-navbar{
 }
 
 #logo{     
-    height: 150px;
-    width: 150px;
+    // height: 150px;
+    // width: 150px;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -19,6 +19,10 @@ ion-navbar{
 
 .logo-div .item-ios.item-block .item-inner{
     border-bottom: none;
+}
+
+.input-section{
+    transform: translate(0, 20vh);
 }
 
 .input-section ion-item{
@@ -35,6 +39,10 @@ ion-navbar{
 
 .item-ios{
     background-color: #eaf0f2;
+}
+
+.login-button{
+    transform: translate(0, 20vh);
 }
 
 

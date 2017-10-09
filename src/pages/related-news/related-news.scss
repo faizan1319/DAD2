@@ -1,17 +1,17 @@
 page-related-news {
 
-ion-navbar{
+ion-navbar {
     text-align: center;
 }
 
-.side{
+.side {
     width : 11%;
     height: 100%; 
     background: blanchedalmond;
     text-align: center;
 }
 
-.side-bar-row{
+.side-bar-row {
 
     display: block;
     // height:20%;
@@ -22,13 +22,35 @@ ion-navbar{
     
 }
 
-video{
+video {
     width: 70%;
     height: auto; 
 }
 
-.feeds{
+.feeds {
     margin-left: 10%;
     margin-top: 8%;
 }
+
+.swiper-slide {
+    overflow-y: scroll;
+    display: block;
+}
+
+.separator{
+    border-top: solid 1px;
+}
+
+.slide-title{
+    position: fixed;
+    width: 100%;
+    padding-top: 2%;
+    text-align: center;
+}
+
+.pursuit-button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 }

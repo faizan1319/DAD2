@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from "@angular/forms";
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { LatLng } from "@ionic-native/google-maps";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
@@ -38,7 +38,8 @@ export class NewPostPage {
     public navParams      : NavParams,
     private transfer      : FileTransfer,
     private formBuilder   : FormBuilder,
-    public toastCtrl      : ToastController 
+    public toastCtrl      : ToastController,
+    public loadingCtrl    : LoadingController 
   ) {
       if(this.mediaType == 1) {
         this.fileKey    = 'image'; 
@@ -69,6 +70,10 @@ export class NewPostPage {
 
 
   upload() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+    });
+    loading.present();
 
     this.postTitle = this.postDetails.get('postTitle').value;
     this.postDesc = this.postDetails.get('postDesc').value;
@@ -99,6 +104,7 @@ export class NewPostPage {
     fileTransfer.upload(this.mediaFilePath, this.postingUrl, options)
     .then((data) => {
       console.log('image has been uploaded: ', data);
+      loading.dismiss();
       this.navCtrl.pop({}, () => {
         let toast = this.toastCtrl.create({
           message: 'Your post has been successfully uploaded !',
@@ -108,6 +114,7 @@ export class NewPostPage {
       })
     }, (err) => {
       console.log('image could not be uploaded: ', err);
+      loading.dismiss();
     })
 
   }

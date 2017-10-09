@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { GoogleMaps } from "@ionic-native/google-maps";
+import { GoogleMaps, Spherical } from "@ionic-native/google-maps";
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from "@ionic-native/camera";
 
@@ -20,6 +20,7 @@ import { FileTransfer } from "@ionic-native/file-transfer";
 import { File } from "@ionic-native/file";
 import { FilePath } from "@ionic-native/file-path";
 import { FileChooser } from "@ionic-native/file-chooser";
+import { Diagnostic } from '@ionic-native/diagnostic';
 // import { SignupValidators } from "../validators/signupValidations";
 
 @NgModule({
@@ -39,6 +40,7 @@ import { FileChooser } from "@ionic-native/file-chooser";
     StatusBar,
     GoogleMaps,
     Geolocation,
+    Spherical,
     SplashScreen,
     Camera,
     MediaCapture,
@@ -47,6 +49,7 @@ import { FileChooser } from "@ionic-native/file-chooser";
     FileTransfer,
     FilePath,
     FileChooser,
+    Diagnostic,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServices,
     PostServices,

@@ -38,36 +38,82 @@
     
   </div>
 
-  <div class="feeds scroll-content">
-    <ion-card class="adv-map">
-      <div style="position: relative">
-        <div id='map'></div>
-        <ion-fab right top>
-        <button ion-fab class="fab-map">
-        <ion-icon name='pin'></ion-icon>
-        </button>
-        </ion-fab>
-      </div>
-      <ion-item>
-        <ion-icon color="subtle" large item-start name='football'></ion-icon>
-        <h2>Museum of Football</h2>
-        <p>11 N. Way St, Madison, WI 53703</p>
-      </ion-item>
-      <ion-item>
-        <ion-icon color="subtle" large item-start name='wine'></ion-icon>
-        <h2>Institute of Fine Cocktails</h2>
-        <p>14 S. Hop Avenue, Madison, WI 53703</p>
-      </ion-item>
-      <ion-item actions>
-        <span ion-text item-start color="secondary" class="item-bold">18 min</span>
-        <span ion-text item-start color="subtle">(2.6 mi)</span>
-        <button ion-button color="primary" clear item-end icon-start>
-          <ion-icon name='navigate'></ion-icon>
-          Start
-        </button>
-      </ion-item>
+  <div class = "main-content">
+    <div class ="slide-title">
+      <ion-title>{{slideTitle}}</ion-title>
+    </div>
 
-    </ion-card>
+    <div class="feeds scroll-content">
+
+      <ion-slides (ionSlideDidChange)="changeTitle()" pager>
+        <ion-slide class="scroll-content">  
+          <ion-row>
+            <ion-card *ngFor="let post of postsForEmployee">
+              <!-- <ion-item>
+                <ion-icon name="pin" item-right (tap)="openMapModal(post.postLat, post.postLng, post.postTitle)"></ion-icon>
+                <ion-avatar item-left>
+                   <img src= 'https://limitless-woodland-73873.herokuapp.com/{{post.dp_url}}'> 
+                  <img src= '{{hostURL}}{{post.dpUrl}}'>
+                </ion-avatar>
+                <h2>{{post.username}}</h2>
+                <p>May 12, 1984</p>
+              </ion-item> -->
+              <img *ngIf='post.postMediaType == 1' src="{{hostURL}}{{post.postMediaFileURL}}">
+              <video *ngIf='post.postMediaType == 2' controls>
+                <source src='{{hostURL}}/{{post.mediaFilePath}}' type="video/mp4">
+              </video>
+              <ion-card-content>
+                <p><strong>Title: </strong>{{post.postTitle}}</p>
+                <p><strong>Categories:</strong></p>
+                <div style = 'height: 4px;'> </div>
+                <div *ngFor = 'let postCat of post.postCategories'>
+                  <p>{{postCat.categoryName}}</p>
+                </div>
+                <div class="separator"></div>
+                <p (tap)="openCommentsModal(post.postId, post.postDesc, post.username, post.dpUrl)">{{post.postDesc}}</p>
+              </ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-up'></ion-icon>
+                    {{post.postLikes}}
+                  </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="primary" clear icon-left (tap)="openCommentsModal(post.postId, post.postDesc, post.username, post.dpUrl)">
+                      <ion-icon name='text'></ion-icon>
+                      {{post.postCommentCount}}
+                    </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button color="primary" clear icon-left>
+                    <ion-icon name='thumbs-down'></ion-icon>
+                    {{post.postDislikes}}
+                  </button>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                  <ion-note>30yr ago</ion-note>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                    <button ion-button icon-left class="pursuit-button" (tap)='getDistanceFromEmployee(post.postLat, post.postLng)'>
+                      <ion-icon name="help"></ion-icon>
+                      Distance
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button icon-left class="pursuit-button" (tap)='openPursuitPage(post.postLat, post.postLng)'>
+                      <ion-icon name="car"></ion-icon>
+                      In Pursuit
+                    </button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-row>
+        </ion-slide>
+      </ion-slides>
+    </div>
   </div>
 
 

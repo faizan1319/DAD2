@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 280:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__post_detail__ = __webpack_require__(292);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostDetailModule", function() { return PostDetailModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pursuit__ = __webpack_require__(299);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PursuitPageModule", function() { return PursuitPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PostDetailModule = (function () {
-    function PostDetailModule() {
+var PursuitPageModule = (function () {
+    function PursuitPageModule() {
     }
-    return PostDetailModule;
+    return PursuitPageModule;
 }());
-PostDetailModule = __decorate([
+PursuitPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__post_detail__["a" /* PostDetail */],
+            __WEBPACK_IMPORTED_MODULE_2__pursuit__["a" /* PursuitPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__post_detail__["a" /* PostDetail */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__pursuit__["a" /* PursuitPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__post_detail__["a" /* PostDetail */]
+            __WEBPACK_IMPORTED_MODULE_2__pursuit__["a" /* PursuitPage */]
         ]
     })
-], PostDetailModule);
+], PursuitPageModule);
 
-//# sourceMappingURL=post-detail.module.js.map
+//# sourceMappingURL=pursuit.module.js.map
 
 /***/ }),
 
-/***/ 292:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__ = __webpack_require__(197);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostDetail; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(198);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PursuitPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,52 +62,94 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Generated class for the PostDetail page.
+ * Generated class for the PursuitPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-var PostDetail = (function () {
-    function PostDetail(googleMaps, navParams) {
+var PursuitPage = (function () {
+    function PursuitPage(navCtrl, navParams, googleMaps, geolocation, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.googleMaps = googleMaps;
+        this.geolocation = geolocation;
+        this.loadingCtrl = loadingCtrl;
+        this.postLocation = {
+            lat: this.navParams.get('postLat'),
+            lng: this.navParams.get('postLng')
+        };
+        this.geolocationOptions = {
+            enableHighAccuracy: true
+        };
     }
-    PostDetail.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad PostDetail');
-    };
-    PostDetail.prototype.ngAfterViewInit = function () {
+    PursuitPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad PursuitPage');
         this.loadMap();
-    };
-    PostDetail.prototype.loadMap = function () {
-        var element = document.getElementById('map');
-        var map = this.googleMaps.create(element);
-        map.one(__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["c" /* GoogleMapsEvent */].MAP_READY).then(function () { return console.log('Map is ready!'); });
-        var ionic = new __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["b" /* LatLng */](this.postLat, this.postLng);
-        var position = {
-            target: ionic,
-            zoom: 70,
-            tilt: 30
-        };
-        map.moveCamera(position);
-        var markerOptions = {
-            position: ionic,
-            title: 'Ionic'
-        };
-        var marker = map.addMarker(markerOptions).then(function (marker) {
-            marker.showInfoWindow();
+        var that = this;
+        this.locationSubscription = this.geolocation.watchPosition(this.geolocationOptions)
+            .subscribe(function (pos) {
+            var myLocation = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            };
+            that.distance = _this.googleMaps._spherical.computeDistanceBetween(myLocation, that.postLocation);
         });
     };
-    return PostDetail;
+    PursuitPage.prototype.loadMap = function () {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            spinner: 'crescent'
+        });
+        loading.present();
+        var that = this;
+        this.geolocation.getCurrentPosition(this.geolocationOptions)
+            .then(function (resp) {
+            var mapOptions = {
+                camera: {
+                    target: {
+                        lat: resp.coords.latitude,
+                        lng: resp.coords.longitude
+                    },
+                    zoom: 18,
+                    tilt: 30
+                }
+            };
+            _this.mapElement = document.getElementById('map');
+            _this.map = _this.googleMaps.create(_this.mapElement, mapOptions);
+            _this.map.one(__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["d" /* GoogleMapsEvent */].MAP_READY)
+                .then(function () {
+                console.log('Map is ready!');
+                that.map.setMyLocationEnabled(true);
+                that.map.setTrafficEnabled(true);
+                that.map.setCompassEnabled(true);
+                loading.dismiss();
+            });
+        })
+            .catch(function (error) {
+            console.log('Error getting location', error);
+        });
+    };
+    PursuitPage.prototype.ionViewDidLeave = function () {
+        this.locationSubscription.unsubscribe;
+    };
+    return PursuitPage;
 }());
-PostDetail = __decorate([
+PursuitPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-post-detail',template:/*ion-inline-start:"E:\MapPractice\src\pages\post-detail\post-detail.html"*/'<!--\n  Generated template for the PostDetail page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>postDetail</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class = "media">\n    <img src="assets/img/image1.jpg">\n  </div>  \n\n  <div id=\'map\'> </div>\n\n  <!--<div class = "new-comment">\n    <ion-item>\n      <ion-input type="text" placeholder="Username"></ion-input>\n    </ion-item>\n  </div>-->\n\n  <div class="comments-section">\n    <ion-item>\n      <ion-avatar item-left>\n        <img src="assets/img/me.jpg">\n      </ion-avatar>\n      <p><strong>Faizan:</strong> Hey there, i am a testing text. the only purpose of my existance is to check wehter i fit in a div or not. 9m</p>\n    </ion-item>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\post-detail\post-detail.html"*/,
+        selector: 'page-pursuit',template:/*ion-inline-start:"E:\MapPractice\src\pages\pursuit\pursuit.html"*/'<!--\n  Generated template for the PursuitPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>pursuitPage</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <div id=\'map\'></div>\n\n  <h3>Distance From Your Location: <ion-input type="text" [(ngModel)]=\'distance\' disabled></ion-input></h3>\n\n  <p>{{distance}}</p>\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\pursuit\pursuit.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-], PostDetail);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["a" /* GoogleMaps */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]])
+], PursuitPage);
 
-//# sourceMappingURL=post-detail.js.map
+//# sourceMappingURL=pursuit.js.map
 
 /***/ })
 

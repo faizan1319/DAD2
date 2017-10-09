@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { Platform, Slides, ModalController } from 'ionic-angular';
+import { Platform, Slides, ModalController, LoadingController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
@@ -29,16 +29,25 @@ export class MainPage {
   trendingPosts                   : any;
   postByLoggedInUser              : any;
   subscribedCategoriesPosts       : any; 
-  slideTitle                      : string = "Trending";
+  slideTitle                      : string;
   hostURL                         : string = "https://limitless-woodland-73873.herokuapp.com/";
-  loggedInUserId                  : number = this.navParams.get('loggedInUserId');
-  loggedInUsername                : string = this.navParams.get('username');
-  firstname                       : string = this.navParams.get('firstname');
-  lastname                        : string = this.navParams.get('lastname');
-  email                           : string = this.navParams.get('email');
-  phone                           : string = this.navParams.get('phone');
-  loggedInUserDpURL               : string = this.navParams.get('dpUrl');
-  loggedInUserPostCount           : number = this.navParams.get('postCount');
+  userData                        : any    = this.navParams.get('userData');
+  // loggedInUserId                  : number = this.navParams.get('loggedInUserId');
+  // loggedInUsername                : string = this.navParams.get('username');
+  // firstname                       : string = this.navParams.get('firstname');
+  // lastname                        : string = this.navParams.get('lastname');
+  // email                           : string = this.navParams.get('email');
+  // phone                           : string = this.navParams.get('phone');
+  // loggedInUserDpURL               : string = this.navParams.get('dpUrl');
+  // loggedInUserPostCount           : number = this.navParams.get('postCount');
+  // loggedInUserId                  : number = this.userData.loggedInUserId;
+  // loggedInUsername                : string = this.userData.username;
+  // firstname                       : string = this.userData.firstname;
+  // lastname                        : string = this.userData.lastname;
+  // email                           : string = this.userData.email;
+  // phone                           : string = this.userData.phone;
+  // loggedInUserDpURL               : string = this.userData.dpUrl;
+  // loggedInUserPostCount           : number = this.userData.postCount;
   
   constructor(
     public navCtrl        : NavController,
@@ -51,18 +60,25 @@ export class MainPage {
     // private filePath   : FilePath,
     // private fileChooser: FileChooser,
     private camera        : Camera,
-    private geolocation   : Geolocation
+    private geolocation   : Geolocation,
+    public loadingCtrl    : LoadingController
   ) {}
 
  
 
   ionViewWillLoad() {
-    console.log('page loded and the user id is: ', this.loggedInUserId);
+    console.log('page loded and the user id is: ', this.userData);
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+    });
+    loading.present();
+    this.slideTitle = 'Trending';
     this.service.getTrending()
     .subscribe((data) => {
       if(data != null) {
         this.trendingPosts = data;
         console.log('here is the data= ', this.trendingPosts);
+        loading.dismiss();
       }
     })
   }
@@ -80,23 +96,35 @@ export class MainPage {
     }
     if(this.slideIndex == 1)
     {
+      let loading = this.loadingCtrl.create({
+        spinner: 'crescent'
+      });
+      loading.present();
+
       this.slideTitle = "Subscriptions";
-      this.service.getUserSubscribtionPosts(this.loggedInUserId)
+      this.service.getUserSubscribtionPosts(this.userData.loggedInUserId)
       .subscribe( (data)=> {
         if(data != null) {
           this.subscribedCategoriesPosts = data;
           console.log(this.subscribedCategoriesPosts);
+          loading.dismiss();
         }
       })
     }
     if(this.slideIndex >= 2)
     {
+      let loading = this.loadingCtrl.create({
+        spinner: 'crescent'
+      });
+      loading.present();
+
       this.slideTitle = "My Posts";
-      this.service.getPostByUserId(this.loggedInUserId)
+      this.service.getPostByUserId(this.userData.loggedInUserId)
       .subscribe((data) => {
         if(data != null) {
           this.postByLoggedInUser = data;
           console.log(this.postByLoggedInUser);
+          loading.dismiss();
         }
       })
     }
@@ -119,13 +147,22 @@ export class MainPage {
       
       this.camera.getPicture(options).then((imageData) => {
         let option = { enableHighAccuracy : true };
+
+        let loading = this.loadingCtrl.create({
+          spinner: 'crescent'
+        });
+        loading.present();
+
         this.geolocation.getCurrentPosition(option)
         .then((resp) => {
           let ionic: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
           console.log('From camera plugin: ', imageData);
+    
+          loading.dismiss();
+      
           this.navCtrl.push('NewPostPage', {
-                  loggedInUserId  : this.loggedInUserId,
-                  username        : this.loggedInUsername, 
+                  loggedInUserId  : this.userData.loggedInUserId,
+                  username        : this.userData.loggedInUsername, 
                   mediaType       : 1,
                   mediaFilePath   : imageData,
                   postLat         : ionic.lat,
@@ -166,13 +203,22 @@ export class MainPage {
       .then ((data: MediaFile[]) => {
         console.log('From mediaCapture.captureVideo plugin: ', data['0'].fullPath);
         let option = { enableHighAccuracy : true };
+
+        let loading = this.loadingCtrl.create({
+          spinner: 'crescent'
+        });
+        loading.present();
+
         this.geolocation.getCurrentPosition(option)
         .then((resp) => {
           let ionic: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
           console.log('From camera plugin: ', data['0'].fullPath);
+
+          loading.dismiss();
+      
           this.navCtrl.push('NewPostPage', {
-                  loggedInUserId  : this.loggedInUserId,
-                  username        : this.loggedInUsername, 
+                  loggedInUserId  : this.userData.loggedInUserId,
+                  username        : this.userData.loggedInUsername, 
                   mediaType       : 2,
                   mediaFilePath   : data['0'].fullPath,
                   postLat         : ionic.lat,
@@ -206,11 +252,13 @@ export class MainPage {
   
   moveToMaps()
   {
-    this.navCtrl.push('Maps');
+    this.navCtrl.push('GeneralMapPage');
   }
 
-  moveToRelatedNews(){
-    this.navCtrl.push('RelatedNews');
+  moveToSettings(){
+    this.navCtrl.push('SettingsPage', {
+      userData: this.userData
+    });
   }
 
   openCommentsModal(postId: number, postDesc: string, postUsername: string, postUserDpUrl: string)
@@ -221,7 +269,7 @@ export class MainPage {
       postDesc,
       postUsername,
       postUserDpUrl,
-      loggedInUserId : this.loggedInUserId 
+      loggedInUserId : this.userData.loggedInUserId 
     });
     commentModal.present();
   }

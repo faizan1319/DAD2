@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 import { CommentServices } from "../../providers/comment-services";
 
 /**
@@ -18,7 +18,13 @@ export class CommentModal {
   comments: any;
   newComment: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private service: CommentServices) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    private service: CommentServices,
+    public loadingCtrl: LoadingController
+  ) {
   }
 
   postId: number = this.navParams.get('postId');
@@ -34,18 +40,30 @@ export class CommentModal {
   ionViewDidLoad() {
     console.log('comment modal loaded and the logged in user id is: ', this.loggedInUserId);
     
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+    });
+    loading.present();
+    
     this.service.getPostComments(this.postId)
     .subscribe((data) => {
       this.comments = data;
       console.log(this.comments);
+      loading.dismiss();
     });
   }
 
   postComment() {
     console.log('comment text: ',this.newComment);
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+    });
+    loading.present();
+
     this.service.postNewComment(this.newComment, this.loggedInUserId, this.postId)
     .subscribe((data) => {
       this.newComment = null;
+      loading.dismiss();
     })
 
   }

@@ -28,10 +28,6 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.mappractice309404"
         },
-        "cordova-plugin-googlemaps": {
-            "API_KEY_FOR_ANDROID": "AIzaSyB-8mOshO6HxAfhhQh2zeAiMcnZyD_e-s8",
-            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
-        },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.ionicframework.mappractice309404"
         },
@@ -51,6 +47,16 @@
             "PACKAGE_NAME": "com.ionicframework.mappractice309404"
         },
         "cordova-plugin-filechooser": {
+            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
+        },
+        "onesignal-cordova-plugin": {
+            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
+        },
+        "cordova-plugin-googlemaps": {
+            "API_KEY_FOR_ANDROID": "AIzaSyB-8mOshO6HxAfhhQh2zeAiMcnZyD_e-s8",
+            "PACKAGE_NAME": "com.ionicframework.mappractice309404"
+        },
+        "cordova.plugins.diagnostic": {
             "PACKAGE_NAME": "com.ionicframework.mappractice309404"
         }
     },

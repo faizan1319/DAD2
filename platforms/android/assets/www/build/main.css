@@ -33255,13 +33255,16 @@ page-comment-modal ion-icon {
   z-index: 1;
 }
 
+page-general-map #map {
+  height: 100%;
+  width: 100%;
+}
+
 page-login ion-navbar {
   text-align: center;
 }
 
 page-login #logo {
-  height: 150px;
-  width: 150px;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
@@ -33273,6 +33276,11 @@ page-login .logo-div .item-md.item-block .item-inner {
 
 page-login .logo-div .item-ios.item-block .item-inner {
   border-bottom: none;
+}
+
+page-login .input-section {
+  -webkit-transform: translate(0, 20vh);
+  transform: translate(0, 20vh);
 }
 
 page-login .input-section ion-item {
@@ -33289,6 +33297,11 @@ page-login .item-md {
 
 page-login .item-ios {
   background-color: #eaf0f2;
+}
+
+page-login .login-button {
+  -webkit-transform: translate(0, 20vh);
+  transform: translate(0, 20vh);
 }
 
 page-main-page ion-navbar {
@@ -33420,6 +33433,11 @@ page-post-map-modal #map {
   height: 100%;
 }
 
+page-pursuit #map {
+  height: 70%;
+  width: 100%;
+}
+
 page-related-news ion-navbar {
   text-align: center;
 }
@@ -33449,6 +33467,88 @@ page-related-news .feeds {
   margin-top: 8%;
 }
 
+page-related-news .swiper-slide {
+  overflow-y: scroll;
+  display: block;
+}
+
+page-related-news .separator {
+  border-top: solid 1px;
+}
+
+page-related-news .slide-title {
+  position: fixed;
+  width: 100%;
+  padding-top: 2%;
+  text-align: center;
+}
+
+page-related-news .pursuit-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+page-settings ion-navbar {
+  text-align: center;
+}
+
+page-settings #image-upload {
+  height: 150px;
+  width: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+page-settings .image-upload-div .item-md.item-block .item-inner {
+  border-bottom: none;
+}
+
+page-settings .image-upload-div .item-ios.item-block .item-inner {
+  border-bottom: none;
+}
+
+page-settings .separator {
+  height: 20px;
+}
+
+page-settings .info-div {
+  background: #fff;
+}
+
+page-settings .info-div .item-input .label-md, page-settings .item-select .label-md, page-settings .item-datetime .label-md {
+  color: #000;
+}
+
+page-settings .info-div .item-input .label-ios, page-settings .item-select .label-ios, page-settings .item-datetime .label-ios {
+  color: #000;
+}
+
+page-settings .subscriptions {
+  background: #fff;
+  padding: 10px;
+}
+
+page-settings .subscriptions .button {
+  font-size: 11px;
+  color: #000;
+  background-color: #0eed85;
+}
+
+page-settings #add-icon {
+  font-size: 35px;
+  float: right;
+}
+
+page-settings .change-pass {
+  background: #fff;
+}
+
+page-settings #change-button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 page-signup ion-navbar {
   text-align: center;
 }
@@ -33463,6 +33563,30 @@ page-signup .item-md {
 
 page-signup .item-ios {
   background-color: #eaf0f2;
+}
+
+page-signup #logo {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+page-signup .logo-div .item-md.item-block .item-inner {
+  border-bottom: none;
+}
+
+page-signup .logo-div .item-ios.item-block .item-inner {
+  border-bottom: none;
+}
+
+page-signup form {
+  -webkit-transform: translate(0, 3vh);
+  transform: translate(0, 3vh);
+}
+
+page-signup .signup-button {
+  -webkit-transform: translate(0, 7vh);
+  transform: translate(0, 7vh);
 }
 
 page-welcome ion-navbar {

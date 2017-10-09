@@ -89,6 +89,7 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "com-sarriaroman-photoviewer/mappractice309404-photoviewer.gradle"
+apply from: "onesignal-cordova-plugin/mappractice309404-build-extras-onesignal.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -250,9 +251,15 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
-    compile "com.google.android.gms:play-services-maps:9.8.0"
-    compile "com.google.android.gms:play-services-location:9.8.0"
     compile "com.android.support:support-v4:24.1.1+"
+    compile "com.onesignal:OneSignal:3.6.1"
+    compile "com.google.android.gms:play-services-gcm:+"
+    compile "com.google.android.gms:play-services-location:+"
+    compile "com.android.support:support-v4:+"
+    compile "com.android.support:customtabs:+"
+    compile "com.google.android.gms:play-services-maps:+"
+    compile "com.android.support:support-v4:26.+"
+    compile "com.android.support:appcompat-v7:26.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

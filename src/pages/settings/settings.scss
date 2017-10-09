@@ -1,0 +1,65 @@
+page-settings {
+
+    ion-navbar{
+        text-align: center;
+    }
+    
+    #image-upload{     
+        height: 150px;
+        width: 150px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+    
+    .image-upload-div .item-md.item-block .item-inner{
+        border-bottom: none;
+    }
+    
+    .image-upload-div .item-ios.item-block .item-inner{
+        border-bottom: none;
+    }
+
+    .separator{
+        height: 20px;
+    }
+
+    .info-div{
+        background: #fff;
+    }
+
+    .info-div .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #000;
+    }
+
+    .info-div .item-input .label-ios, .item-select .label-ios, .item-datetime .label-ios {
+        color: #000;
+    }
+
+    .subscriptions{
+        background: #fff;
+        padding: 10px;
+    }
+    .subscriptions .button{
+        font-size: 11px;
+        color: #000;
+        background-color: #0eed85;
+    }
+
+    #add-icon{
+        font-size: 35px;
+        float: right;
+    }
+
+    .change-pass{
+        background: #fff;
+    }
+
+    #change-button{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+}

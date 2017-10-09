@@ -36,7 +36,7 @@
       <ion-icon name="videocam" (tap)="openVideoCam()"></ion-icon>
     </div>
     <div class="side-bar-row">
-      <ion-icon name="settings" (tap)="moveToRelatedNews()"></ion-icon>
+      <ion-icon name="settings" (tap)="moveToSettings()"></ion-icon>
     </div>
     <div class="side-bar-row">
       <ion-icon ios="md-globe" md="md-globe" (tap)="moveToMaps()"></ion-icon>
@@ -170,9 +170,9 @@
                 <ion-icon name="pin" item-right (tap)="openMapModal(post.postLat, post.postLng, post.postTitle)"></ion-icon>
                 <ion-avatar item-left>
                   <!-- <img src= 'https://limitless-woodland-73873.herokuapp.com/{{post.dp_url}}'> -->
-                  <img src= '{{hostURL}}{{loggedInUserDpURL}}'>
+                  <img src= '{{hostURL}}{{userData.dpUrl}}'>
                 </ion-avatar>
-                <h2>{{loggedInUsername}}</h2>
+                <h2>{{userData.username}}</h2>
                 <p>May 12, 1984</p>
               </ion-item>
               <img *ngIf='post.postMediaType == 1' src="{{hostURL}}{{post.postMediaFileURL}}">
@@ -187,7 +187,7 @@
                   <p>{{postCat.categoryName}}</p>
                 </div>
                 <div class="separator"></div>
-                <p (tap)="openCommentsModal(post.postId, post.postDesc, loggedInUsername, loggedInUserDpURL)">{{post.postDesc}}</p>
+                <p (tap)="openCommentsModal(post.postId, post.postDesc, userData.username, userData.dpURL)">{{post.postDesc}}</p>
               </ion-card-content>
               <ion-row>
                 <ion-col>

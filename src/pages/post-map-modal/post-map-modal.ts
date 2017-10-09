@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from "@ionic-native/google-maps";
+import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker, GoogleMapOptions } from "@ionic-native/google-maps";
 
 /**
  * Generated class for the PostMapModal page.
@@ -15,7 +15,7 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerO
 })
 export class PostMapModal {
 
-  constructor(public navParams: NavParams, public googleMaps: GoogleMaps) {
+  constructor(public navParams: NavParams, public googleMaps: GoogleMaps, public loadingCtrl: LoadingController) {
   }
 
   postLat   : number = this.navParams.get('latitude');
@@ -36,29 +36,47 @@ export class PostMapModal {
 
   loadMap()
   {
-      let element: HTMLElement = document.getElementById('map');
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+    });
+    loading.present();
 
-      let map: GoogleMap = this.googleMaps.create(element);
+    let element: HTMLElement = document.getElementById('map');
 
-      map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: this.postLat,
+          lng: this.postLng
+        },
+        zoom: 18,
+        tilt: 30
+      }
+    };
 
-      let ionic: LatLng = new LatLng(this.postLat, this.postLng);
-                          let position: CameraPosition = {
-                            target: ionic,
-                            zoom: 30,
-                            tilt: 30
-                          };
+    let map: GoogleMap = this.googleMaps.create(element, mapOptions);
 
-      map.moveCamera(position);
+    map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
 
-      let markerOptions: MarkerOptions = {
-        position: ionic,
-        title: this.postTitle
-      };
+    let ionic: LatLng = new LatLng(this.postLat, this.postLng);
+    // let position: CameraPosition = {
+    //   target: ionic,
+    //   zoom: 30,
+    //   tilt: 30
+    // };
 
-      const marker: any = map.addMarker(markerOptions).then((marker: Marker) => {
-        marker.showInfoWindow();
-      });   
+    // map.moveCamera(position);
+
+    let markerOptions: MarkerOptions = {
+      position: ionic,
+      title: this.postTitle
+    };
+
+    const marker: any = map.addMarker(markerOptions).then((marker: Marker) => {
+      marker.showInfoWindow();
+    }); 
+    
+    loading.dismiss();
   }
 
 }

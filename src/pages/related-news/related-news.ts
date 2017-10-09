@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker, GoogleMaps } from "@ionic-native/google-maps";
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker, GoogleMaps, GoogleMapOptions, Spherical, ILatLng } from "@ionic-native/google-maps";
+import { PostServices } from '../../providers/post-services';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the RelatedNews page.
@@ -14,48 +16,86 @@ import { GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Mark
   templateUrl: 'related-news.html',
 })
 export class RelatedNews {
+
+    slideTitle                      : string = "Relevant Events";
+    postsForEmployee                : any;
+    userData                        : any    = this.navParams.get('userData');
+    locationSubscription            : any;
+    // myLocation                      : ILatLng ;
     
-    slideTitle: string = "Relevant Events";
-    postLng: any;
-    postLat: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private googleMaps: GoogleMaps) {
+  constructor(
+    public navCtrl        : NavController,
+    public navParams      : NavParams,
+    private service       : PostServices,
+    private geolocation   : Geolocation,
+    private spherical     : Spherical,
+    private toastCtrl     : ToastController,
+    public loadingCtrl    : LoadingController
+  ) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     console.log('ionViewDidLoad RelatedNews');
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+    });
+    loading.present();
+
+    this.service.getPostForEmployee(this.userData.employeePostCategoryId)
+    .subscribe((data) => {
+      this.postsForEmployee = data;
+      console.log('post for employee: ', this.postsForEmployee);
+      loading.dismiss();
+    })
   }
 
-    ngAfterViewInit()
-  {
-    this.loadMap();
+  getDistanceFromEmployee(lat: number, lng: number) {
+    
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+    });
+    loading.present();
+
+    let postLocation: ILatLng = {
+      lat,
+      lng
+    }
+
+    let geolocatioOptions = {
+      enableHighAccuracy: true
+    };
+
+    this.geolocation.getCurrentPosition(geolocatioOptions)
+    .then((resp) => {
+
+      let myLocation: ILatLng = {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      }
+
+      console.log('My Location: ',myLocation);
+      console.log('Post Location: ',postLocation);
+      
+      // this.myLocation.lat = resp.coords.latitude;
+      // this.myLocation.lng = resp.coords.latitude;
+      
+      let distance = this.spherical.computeDistanceBetween(myLocation, postLocation);
+      loading.dismiss();
+      let toast = this.toastCtrl.create({
+        message         : 'Distance from your current position is: '+distance,
+        showCloseButton : true,
+        closeButtonText : 'Ok'
+      });
+
+      toast.present();
+    })
   }
 
-  loadMap()
-  {
-      let element: HTMLElement = document.getElementById('map');
-
-      let map: GoogleMap = this.googleMaps.create(element);
-
-      map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
-
-      let ionic: LatLng = new LatLng(this.postLat, this.postLng);
-                          let position: CameraPosition = {
-                            target: ionic,
-                            zoom: 70,
-                            tilt: 30
-                          };
-
-      map.moveCamera(position);
-
-      let markerOptions: MarkerOptions = {
-        position: ionic,
-        title: 'Ionic'
-      };
-
-      const marker: any = map.addMarker(markerOptions).then((marker: Marker) => {
-        marker.showInfoWindow();
-      });   
+  openPursuitPage(lat: number, lng: number) {
+    this.navCtrl.push('PursuitPage', {
+      postLat: lat,
+      postLng: lng
+    });
   }
 
 }

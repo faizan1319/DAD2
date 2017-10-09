@@ -58,4 +58,18 @@ export class UserServices {
     .map((res: Response) => res.json())
   }
 
+  // getEmployeeCategory(userId: number){
+  //   let localUrl: string = this.mainUrl+'getEmployeeCategory/'+userId;
+
+  //   return this.http.get(localUrl)
+  //   .map((res: Response) => res.json())
+  // }
+
+  getUserSubscriptions(userId: number){
+    let localUrl: string = this.mainUrl+'userSubscriptions/'+userId;
+
+    return this.http.get(localUrl)
+    .map((res: Response) => res.json())
+  }
+
 }

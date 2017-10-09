@@ -11,9 +11,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PostServices {
 
-  // mainUrl: string = 'https://limitless-woodland-73873.herokuapp.com/posts';
+  mainUrl: string = 'https://limitless-woodland-73873.herokuapp.com/posts';
   
-  mainUrl: string = 'http://localhost:3000/posts';
+  // mainUrl: string = 'http://localhost:3000/posts';
 
   constructor(public http: Http) {
     console.log('Hello PostServices Provider');
@@ -32,7 +32,13 @@ export class PostServices {
   }
 
   getUserSubscribtionPosts(userId: number){
-    let localUrl: string = this.mainUrl+'/getUserSubscribtionPosts/'+userId;
+    let localUrl: string = this.mainUrl+'/getUserSubscriptionPosts/'+userId;
+    return this.http.get(localUrl)
+    .map((res: Response) => res.json())
+  }
+
+  getPostForEmployee(category: number){
+    let localUrl: string = this.mainUrl+'/getPostForEmployee/'+category;
     return this.http.get(localUrl)
     .map((res: Response) => res.json())
   }

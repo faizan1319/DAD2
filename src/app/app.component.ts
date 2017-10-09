@@ -3,9 +3,6 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-// import { MainPage } from "../pages/main-page/main-page";
-// import { Login } from "../pages/login/login";
-// import { RelatedNews } from "../pages/related-news/related-news";
 @Component({
   templateUrl: 'app.html'
 })
@@ -18,6 +15,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+
+      window["plugins"].OneSignal
+        .startInit("f2c01e69-0fcb-4967-9a65-3e2aa3bd1cce", "366683977964")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
     });
   }
 }

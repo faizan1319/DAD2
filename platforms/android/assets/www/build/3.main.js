@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 282:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__related_news__ = __webpack_require__(294);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RelatedNewsModule", function() { return RelatedNewsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__settings__ = __webpack_require__(301);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPageModule", function() { return SettingsPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RelatedNewsModule = (function () {
-    function RelatedNewsModule() {
+var SettingsPageModule = (function () {
+    function SettingsPageModule() {
     }
-    return RelatedNewsModule;
+    return SettingsPageModule;
 }());
-RelatedNewsModule = __decorate([
+SettingsPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__related_news__["a" /* RelatedNews */],
+            __WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__related_news__["a" /* RelatedNews */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__related_news__["a" /* RelatedNews */]
+            __WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */]
         ]
     })
-], RelatedNewsModule);
+], SettingsPageModule);
 
-//# sourceMappingURL=related-news.module.js.map
+//# sourceMappingURL=settings.module.js.map
 
 /***/ }),
 
-/***/ 294:
+/***/ 301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__ = __webpack_require__(197);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RelatedNews; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,54 +62,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the RelatedNews page.
+ * Generated class for the SettingsPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-var RelatedNews = (function () {
-    function RelatedNews(navCtrl, navParams, googleMaps) {
+var SettingsPage = (function () {
+    function SettingsPage(navCtrl, navParams, formBuilder) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.googleMaps = googleMaps;
-        this.slideTitle = "Relevant Events";
-    }
-    RelatedNews.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RelatedNews');
-    };
-    RelatedNews.prototype.ngAfterViewInit = function () {
-        this.loadMap();
-    };
-    RelatedNews.prototype.loadMap = function () {
-        var element = document.getElementById('map');
-        var map = this.googleMaps.create(element);
-        map.one(__WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["c" /* GoogleMapsEvent */].MAP_READY).then(function () { return console.log('Map is ready!'); });
-        var ionic = new __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["b" /* LatLng */](this.postLat, this.postLng);
-        var position = {
-            target: ionic,
-            zoom: 70,
-            tilt: 30
-        };
-        map.moveCamera(position);
-        var markerOptions = {
-            position: ionic,
-            title: 'Ionic'
-        };
-        var marker = map.addMarker(markerOptions).then(function (marker) {
-            marker.showInfoWindow();
+        this.formBuilder = formBuilder;
+        this.userData = this.navParams.get('userData');
+        this.changePasswordForm = this.formBuilder.group({
+            currentPassword: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].minLength(8), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required], []],
+            newPassword: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].minLength(8), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required], []],
+            confirmPassword: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].minLength(8), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required], []]
         });
+    }
+    SettingsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SettingsPage');
+        console.log('user data: ', this.userData);
     };
-    return RelatedNews;
+    return SettingsPage;
 }());
-RelatedNews = __decorate([
+SettingsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-related-news',template:/*ion-inline-start:"E:\MapPractice\src\pages\related-news\related-news.html"*/'<!--\n  Generated template for the RelatedNews page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="bg">\n    <ion-title>Do Something About All This</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="side fixed-content">\n\n    <div class="side-bar-row">\n      <ion-icon name="search"></ion-icon>\n    </div>\n    <div class="side-bar-row">\n      <ion-icon name="notifications" (tap)="openNotifications()"></ion-icon>\n    </div>\n    <div class="side-bar-row">\n      <ion-icon name="camera" (tap)="openCamera()"></ion-icon>\n    </div>\n    <div class="side-bar-row">\n      <ion-icon name="videocam" (tap)="openVideoCam()"></ion-icon>\n    </div>\n    <div class="side-bar-row">\n      <ion-icon name="settings" (tap)="moveToRelatedNews()"></ion-icon>\n    </div>\n    <div class="side-bar-row">\n      <ion-icon ios="md-globe" md="md-globe" (tap)="moveToMaps()"></ion-icon>\n    </div>\n    \n  </div>\n\n  <div class="feeds scroll-content">\n    <ion-card class="adv-map">\n      <div style="position: relative">\n        <div id=\'map\'></div>\n        <ion-fab right top>\n        <button ion-fab class="fab-map">\n        <ion-icon name=\'pin\'></ion-icon>\n        </button>\n        </ion-fab>\n      </div>\n      <ion-item>\n        <ion-icon color="subtle" large item-start name=\'football\'></ion-icon>\n        <h2>Museum of Football</h2>\n        <p>11 N. Way St, Madison, WI 53703</p>\n      </ion-item>\n      <ion-item>\n        <ion-icon color="subtle" large item-start name=\'wine\'></ion-icon>\n        <h2>Institute of Fine Cocktails</h2>\n        <p>14 S. Hop Avenue, Madison, WI 53703</p>\n      </ion-item>\n      <ion-item actions>\n        <span ion-text item-start color="secondary" class="item-bold">18 min</span>\n        <span ion-text item-start color="subtle">(2.6 mi)</span>\n        <button ion-button color="primary" clear item-end icon-start>\n          <ion-icon name=\'navigate\'></ion-icon>\n          Start\n        </button>\n      </ion-item>\n\n    </ion-card>\n  </div>\n\n\n\n      \n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\related-news\related-news.html"*/,
+        selector: 'page-settings',template:/*ion-inline-start:"E:\MapPractice\src\pages\settings\settings.html"*/'<!--\n  Generated template for the SettingsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color=\'bg\'>\n    <ion-title>Settings</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n    <div class="image-upload-div">\n      <ion-item>\n        <ion-avatar>\n          <img src="assets/img/img_add.png" id="image-upload">\n        </ion-avatar>\n      </ion-item>\n    </div>\n\n    <div class="separator"></div>\n\n    <div class="info-div">\n        <ion-row style="padding:10px">\n            <ion-col>\n                <h3>General Info: </h3>\n            </ion-col>  \n          </ion-row> \n      <ion-row>\n        <ion-item>\n          <ion-label>First Name:</ion-label>\n          <ion-input type="text" [(ngModel)]=\'userData.firstname\'></ion-input>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-item>\n          <ion-label>Last Name:</ion-label>\n          <ion-input type="text" [(ngModel)]=\'userData.lastname\'></ion-input>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-item>\n          <ion-label>Username:</ion-label>\n          <ion-input type="text" [(ngModel)]=\'userData.username\' disabled></ion-input>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-item>\n            <ion-label>Email:</ion-label>\n            <ion-input type="text" [(ngModel)]=\'userData.email\'></ion-input>\n        </ion-item>\n      </ion-row>\n    </div>\n    \n    <div class="separator"></div>\n\n    <div class="subscriptions">\n      <ion-row>\n        <ion-col>\n            <h3>Subscriptions: </h3>\n        </ion-col>\n        <ion-col>\n          <ion-icon name=\'add-circle\' id=\'add-icon\'></ion-icon>\n        </ion-col>\n      </ion-row>\n      <div class="subs" *ngFor = \'let subscription of userData.userSubscriptions\'>\n        <button ion-button icon-only round>\n            <ion-icon name="checkmark-circle">{{subscription.categoryName}}</ion-icon>\n        </button>\n      </div>\n    </div>\n\n    <div class="separator"></div>\n\n    <div class="change-pass" [formGroup] = \'changePasswordForm\'>\n      <ion-row style="padding:10px">\n        <ion-col>\n            <h3>Change Password: </h3>\n        </ion-col>  \n      </ion-row> \n      <ion-row>\n        <ion-item>\n          <!-- <ion-label>Current Password</ion-label> -->\n          <ion-input placeholder=\'Current Password\' type="password" formControlName =\'currentPassword\'></ion-input>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-item>\n          <!-- <ion-label>New Password</ion-label> -->\n          <ion-input placeholder=\'New Password\' type="password" formControlName = \'newPassword\'></ion-input>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-item>\n          <!-- <ion-label>Re-Type New Password</ion-label> -->\n          <ion-input placeholder=\'Re-Type New Password\' type="password" formControlName = \'confirmPassword\'></ion-input>\n        </ion-item>\n      </ion-row>\n      <ion-row style="height:15px;"></ion-row>\n      <ion-row>\n        <button ion-button round id="change-button" [disabled]=\'!changePasswordForm.valid\' (tap)=\'changePaasword()\'>Change!</button>\n      </ion-row>\n\n\n    </div>\n\n\n</ion-content>\n'/*ion-inline-end:"E:\MapPractice\src\pages\settings\settings.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_maps__["a" /* GoogleMaps */]])
-], RelatedNews);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]])
+], SettingsPage);
 
-//# sourceMappingURL=related-news.js.map
+//# sourceMappingURL=settings.js.map
 
 /***/ })
 
